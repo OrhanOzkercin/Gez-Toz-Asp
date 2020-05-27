@@ -1,0 +1,151 @@
+:root {
+	--primary-color: #28a745;
+	--secondary-color: #0284d0;
+	--dark-color: #333;
+	--medium-grey: #dddddd;
+	--light-color: #f4f4f4;
+}
+
+.text-primary {
+	color: var(--primary-color);
+}
+.text-secondary {
+	color: var(--secondary-color);
+}
+
+/* Button */
+
+.btn {
+	display: inline-block;
+	cursor: pointer;
+	padding: 10px 30px;
+	color: #fff;
+	background: var(--primary-color);
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.btn:hover {
+	opacity: 0.9;
+}
+
+.btn-primary,
+.bg-primary {
+	background: var(--primary-color);
+	color: #fff;
+}
+
+.btn-secondary,
+.bg-secondary {
+	background: var(--secondary-color);
+	color: #fff;
+}
+
+.btn-dark,
+.bg-dark {
+	background: var(--dark-color);
+	color: #fff;
+}
+
+.btn-light,
+.bg-light {
+	background: var(--light-color);
+	color: #333;
+}
+
+.btn-outline {
+	background: transparent;
+	border: 1px solid #fff;
+}
+
+/* Devider */
+
+.d-vertical {
+	align-self: center;
+	margin: 0 2.5%;
+	border-right: 1px solid var(--medium-grey);
+	height: 200px;
+	padding: 0;
+}
+
+/* Flex-Items */
+
+.flex-items {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	flex-wrap: wrap;
+}
+
+.flex-items > div {
+	flex: 1;
+	padding: 40px 10px;
+	width: 100%;
+	min-width: 300px;
+}
+
+.flex-items input {
+	padding: 20px 20px;
+	border: 2px var(--primary-color) solid;
+	border-radius: 50px;
+	width: 20rem;
+	font-size: 1.2rem;
+}
+
+.flex-items input:focus {
+	outline: none;
+	border: var(--secondary-color) 2px solid;
+}
+/* Flex Columns */
+
+.flex-columns .row {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.flex-columns .row .column a {
+	margin: 5px;
+}
+
+.flex-columns .column {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	flex: 1;
+	min-width: 300px;
+}
+.flex-columns .column .column-1,
+.flex-columns .column .column-2,
+.flex-columns .column .column-3 {
+	height: 100%;
+}
+
+.flex-columns .column img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.flex-columns .column .column-1 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 40px;
+}
+
+.flex-columns h4 {
+	font-size: 1.2rem;
+	margin-bottom: 15px;
+}
+
+.flex-columns h2 {
+	font-size: 2.5rem;
+	font-weight: 400;
+}
