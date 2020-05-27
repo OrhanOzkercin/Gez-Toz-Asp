@@ -32,7 +32,14 @@
 						<a href="signup.aspx" class="btn btn-secondary">Üye Ol</a>
 					</li>
 				</ul>
-				<p id="welcomeText" runat="server">Hoş geldin </p>
+				<div id="loginedSide" runat="server" Visible="False">
+                    <p id="welcomeText" runat="server" >Hoş geldin </p>
+					<div>
+					<asp:Button runat="server" CssClass="btn btn-primary" Text="Profil"/>
+                    <asp:Button runat="server" CssClass="btn btn-secondary" Text="Çıkış" OnClick="Unnamed2_Click"/>
+                    </div>
+                </div>
+				
 			</nav>
 
 			<div class="content">

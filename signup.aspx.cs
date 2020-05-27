@@ -6,7 +6,7 @@ namespace geztoz_asp
 {
     public partial class signup : System.Web.UI.Page
     {
-        UserHandler userHandler = new UserHandler();
+        UserHandler userHandler = UserHandler.getInitial();
         
         protected void Page_Load(object sender, EventArgs e)
         {

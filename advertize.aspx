@@ -59,9 +59,14 @@
 						</div>
 						<div class="d-vertical"></div>
 						<div class="column-3">
-							<a href="#p3" class="btn">Yeni Bir İlan Ver</a>
-							<a href="" class="btn">Profiline Git</a>
-							<a href="" class="btn">Çıkış</a>
+							
+                            <asp:Button ID="newAdv" runat="server" CssClass="btn" Text="Yeni Bir İlan Ver" />
+                            <asp:Button ID="profile" runat="server" CssClass="btn" Text="Profiline Git" />
+                            <asp:Button ID="exit" runat="server" CssClass="btn" Text="Çıkış" />
+
+							<%--<a href="#p3" class="btn">Yeni Bir İlan Ver</a>--%>
+<%--							<a href="" class="btn">Profiline Git</a>
+                            <a href="" class="btn">Çıkış</a>--%>
 						</div>
 					</div>
 				</div>

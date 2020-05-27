@@ -39,7 +39,7 @@ namespace geztoz_asp
 
             return true;
         }
-
+        
         public static bool validateVerifyPassword(string pass, string verifyPass)
         {
             return  pass == verifyPass ? true : false;

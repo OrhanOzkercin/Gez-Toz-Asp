@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Web.ModelBinding;
+using System.Web;
 using System.Windows.Forms;
 
 namespace geztoz_asp
@@ -77,8 +76,23 @@ namespace geztoz_asp
     {
         private DatabaseHandler dh = DatabaseHandler.getInitial();
         static List<User> userList = new List<User>();
+        static UserHandler userHandler;
         private bool isValid =false;
-        public UserHandler() { }
+        private UserHandler() { }
+
+        public static UserHandler getInitial()
+        {
+            if (userHandler == null)
+            {
+                 userHandler = new UserHandler();
+                 return userHandler;
+            }
+            else
+            {
+                return userHandler;
+            }
+        }
+
 
         // Register User Section
 
@@ -120,8 +134,19 @@ namespace geztoz_asp
 
         public bool loginUser(string loginEmail, string loginPassword)
         {
-
-            return Validation.validateLogin(loginEmail, loginPassword);
+            if (Validation.validateLogin(loginEmail, loginPassword))
+            {
+                User user = dh.GetUser(loginEmail);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
         }
+
+        
+
     }
 }
