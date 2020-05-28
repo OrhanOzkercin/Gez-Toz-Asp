@@ -12,12 +12,10 @@ namespace geztoz_asp
              dh = DatabaseHandler.getInitial();
              userHandler = UserHandler.getInitial();
              user = User.getInitial();
-             dh = null;
-             userHandler = null;
-             user = null;
+             dh.setNull();
+             userHandler.setNull();
+             user.setNull();
          }
-
-
         
     }
 }

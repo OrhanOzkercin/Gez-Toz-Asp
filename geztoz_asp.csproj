@@ -80,6 +80,7 @@
     <Content Include="css\style.css" />
     <Content Include="css\utilities.css" />
     <Content Include="App_Data\main.mdb" />
+    <Content Include="js\main.js" />
     <Content Include="login.aspx" />
     <Content Include="search.aspx" />
     <Content Include="signup.aspx" />
@@ -95,6 +96,7 @@
       <DependentUpon>advertize.aspx</DependentUpon>
     </Compile>
     <Compile Include="DatabaseHandler.cs" />
+    <Compile Include="ErrorHandler.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -125,6 +127,7 @@
     <Compile Include="signup.aspx.designer.cs">
       <DependentUpon>signup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TravelHandler.cs" />
     <Compile Include="UserHandler.cs" />
     <Compile Include="Validation.cs" />
   </ItemGroup>

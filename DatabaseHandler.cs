@@ -24,6 +24,11 @@ namespace geztoz_asp
             }
         }
 
+        public void setNull()
+        {
+            dh = null;
+        }
+
         public List<string> getEmailsList()
         {
             List<string> emailList = new List<string>();
@@ -72,7 +77,7 @@ namespace geztoz_asp
             conn.Close();
         }
 
-        public User GetUser(string email)
+        public User getUser(string email)
         {
             User user = null;
             OleDbCommand select = new OleDbCommand("Select * from Users where email = @email", conn);
@@ -88,8 +93,42 @@ namespace geztoz_asp
             return user;
         }
 
-        
-        
+        public List<string> getAllTravelIds()
+        {
+            List<string> travelIdList = new List<string>();
+            OleDbCommand select = new OleDbCommand("Select travelId from Travels", conn);
+            conn.Open();
+            
+            OleDbDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                travelIdList.Add(reader["travelId"].ToString());
+            }
+
+            conn.Close();
+            return travelIdList;
+        }
+
+        public void addTravel(Travel travel)
+        {
+            OleDbCommand insert = new OleDbCommand("INSERT INTO Travels ( travelId, driverId, driverName, driverSurname, passengersId, totalSeat, availableSeat, [from], [to], travelDate )" +
+                                                   "VALUES (@travelId,@driverId,@driverName,@driverSurname,@passengersId,@totalSeat,@availableSeat,@from,@to,@travelDate)", conn);
+            conn.Open();
+
+            insert.Parameters.AddWithValue("@travelId", travel.TravelId);
+            insert.Parameters.AddWithValue("@driverId", travel.DriverId);
+            insert.Parameters.AddWithValue("@driverName", travel.DriverName);
+            insert.Parameters.AddWithValue("@driverSurname", travel.DriverSurname);
+            insert.Parameters.AddWithValue("@passengersId", travel.PassengersId);
+            insert.Parameters.AddWithValue("@totalSeat", travel.TotalSeat);
+            insert.Parameters.AddWithValue("@availableSeat", travel.AvailableSeat);
+            insert.Parameters.AddWithValue("@from", travel.FromDestination);
+            insert.Parameters.AddWithValue("@to", travel.ToDestination);
+            insert.Parameters.AddWithValue("@travelDate", travel.TravelDate);
+
+            insert.ExecuteNonQuery();
+            conn.Close();
+        }
 
     }
 }

@@ -27,7 +27,7 @@ namespace geztoz_asp
 
             if (userHandler.loginUser(loginEmail.Text,loginPassword.Text))
             {
-                User user = dh.GetUser(loginEmail.Text);
+                User user = dh.getUser(loginEmail.Text);
                 addCookie(user);
                 Response.Redirect("homepage.aspx");
             }
@@ -40,6 +40,7 @@ namespace geztoz_asp
             HttpCookie cookie = new HttpCookie("Preferences");
             cookie["userId"] = user.Id;
             cookie["userName"] = user.Name;
+            cookie["userSurname"] = user.Surname;
             cookie["userEmail"] = user.Email;
             
             Response.Cookies.Add(cookie);

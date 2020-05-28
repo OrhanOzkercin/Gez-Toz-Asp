@@ -513,7 +513,7 @@ img {
 	background-color: #49c1a2;
 	border: none;
 	border-radius: 5px;
-
+    outline: none;
 	color: #fff;
 
 	cursor: pointer;

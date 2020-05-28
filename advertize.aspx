@@ -103,7 +103,7 @@
                             <h3>Kaç Kişi Gidiyorsun?</h3>
                             <div>
 								
-                                <asp:TextBox  ID="people" runat="server" TextMode="Number" placeholder="1"></asp:TextBox>
+                                <asp:TextBox  ID="totalSeat" runat="server" TextMode="Number" placeholder="1"></asp:TextBox>
 
                                 <%--<input
 									type="number"
@@ -170,8 +170,8 @@
 					</div>
 				</div>--%>
 				<div>
-					<button class="btn btn-secondary">İlan Ver!</button>
-				</div>
+                    <asp:Button ID="advertizeButton" runat="server"  CssClass="btn btn-secondary" Text="İlan Ver!" OnClick="advertizeButton_Click" />
+                </div>
 			</section>
 		</main>
 		<footer id="footer" class="bg-dark">

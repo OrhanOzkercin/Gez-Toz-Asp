@@ -16,29 +16,10 @@ namespace geztoz_asp
 
         public static User user;
 
-        private User(string id,string name, string surname, string email, string password,string travelsId="")
+        public void setNull()
         {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.email = email;
-            this.password = password;
-            this.travelsId = travelsId;
+            user = null;
         }
-
-        public static User getInitial(string id = "", string name = "", string surname = "", string email = "", string password = "", string travelsId = "")
-        {
-            if (user == null)
-            {
-               user = new User( id,  name,  surname,  email,  password,  travelsId);
-                return user;
-            }
-            else
-            {
-                return user;
-            }
-        }
-
         public string Id
         {
             get => id;
@@ -64,11 +45,33 @@ namespace geztoz_asp
             get => password;
             set => password= value;
         }
-
         public string TravelsId
         {
             get => travelsId;
             set => travelsId += value + "-";
+        }
+
+        private User(string id, string name, string surname, string email, string password, string travelsId = "")
+        {
+            this.id = id;
+            this.name = name;
+            this.surname = surname;
+            this.email = email;
+            this.password = password;
+            this.travelsId = travelsId;
+        }
+
+        public static User getInitial(string id = "", string name = "", string surname = "", string email = "", string password = "", string travelsId = "")
+        {
+            if (user == null)
+            {
+                user = new User(id, name, surname, email, password, travelsId);
+                return user;
+            }
+            else
+            {
+                return user;
+            }
         }
     }
     
@@ -93,19 +96,19 @@ namespace geztoz_asp
             }
         }
 
+        public void setNull()
+        {
+            userHandler = null;
+        }
 
         // Register User Section
 
         public void registerUser(string name, string surname, string email, string password)
         {
-            isValid = Validation.validateEmpty(name, surname, email, password, userList);
+            isValid = Validation.validateRegisterUserEmpty(name, surname, email, password);
             if (isValid)
             {
-                if (generateUserId() == "-1")
-                {
-                    MessageBox.Show("Kullanıcı idleri ile ilgili bir sorun var. Bu id ile kullanıcı bulunmakta.");
-                    return;
-                }
+                
                 User user = User.getInitial(generateUserId(),name, surname, email, password);
                 userList.Add(user);
                 dh.addUser(user);
@@ -136,7 +139,7 @@ namespace geztoz_asp
         {
             if (Validation.validateLogin(loginEmail, loginPassword))
             {
-                User user = dh.GetUser(loginEmail);
+                User user = dh.getUser(loginEmail);
                 return true;
             }
             else
