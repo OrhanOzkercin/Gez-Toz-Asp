@@ -99,7 +99,10 @@
                 </section>
 
                 <!-- Road List -->
-                <section class="road-list flex-columns">
+                <asp:Panel ID="filteredTravelsPanel" runat="server">
+
+                </asp:Panel>
+                <section Visible="False" ID="availableTravel" runat="server" class="road-list flex-columns">
                     <div class="row">
                         <div class="column">
                             <div class="column-1">
@@ -109,22 +112,18 @@
                                         <div class="content-items">
                                             <i class="far fa-user"></i>
                                             <h3>İsim:</h3>
-                                            <p>Orhan</p>
+                                            <p ID="driverName" runat="server" >Orhan</p>
                                         </div>
                                         <div class="content-items">
                                             <i class="fas fa-user"></i>
                                             <h3>Soyisim:</h3>
-                                            <p>Özkerçin</p>
+                                            <p ID="driverSurname" runat="server" >Özkerçin</p>
                                         </div>
-                                        <div class="content-items">
-                                            <i class="fas fa-venus-mars"></i>
-                                            <h3>Cinsiyet:</h3>
-                                            <p>Erkek</p>
-                                        </div>
+                                       
                                         <div class="content-items">
                                             <i class="fas fa-calendar-alt"></i>
                                             <h3>Yaş:</h3>
-                                            <p>22</p>
+                                            <p ID="driverAge" runat="server" >22</p>
                                         </div>
                                     </div>
                                 </div>
@@ -138,31 +137,31 @@
                                         <div class="content-items">
                                             <i class="fas fa-map-marker"></i>
                                             <h3>Nereden:</h3>
-                                            <p>İzmir</p>
+                                            <p ID="fromDestination" runat="server" >İzmir</p>
                                         </div>
 
                                         <div class="content-items">
                                             <i class="fas fa-location-arrow"></i>
                                             <h3>Nereye:</h3>
-                                            <p>İstanbul</p>
+                                            <p ID="toDestination" runat="server" >İstanbul</p>
                                         </div>
 
                                         <div class="content-items">
                                             <i class="fas fa-calendar-day"></i>
                                             <h3>Ne zaman:</h3>
-                                            <p>23 Haziran</p>
+                                            <p ID="date" runat="server" >23 Haziran</p>
                                         </div>
 
                                         <div class="last-item">
                                             <div class="content-items">
                                                 <i class="fas fa-user"></i>
                                                 <h3>Toplam Kişi:</h3>
-                                                <p>3</p>
+                                                <p ID="totalSeat" runat="server" >3</p>
                                             </div>
                                             <div class="content-items">
                                                 <i class="far fa-user"></i>
                                                 <h3>Kalan Kişi:</h3>
-                                                <p>2</p>
+                                                <p ID="availableSeat" runat="server" >2</p>
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +179,7 @@
                             </div>
                         </div>
                     </div>
-                   <%-- <div class="row">
+                    <%-- <div class="row">
                         <div class="column">
                             <div class="column-1">
                                 <h4>Şoför Bilgileri</h4>
