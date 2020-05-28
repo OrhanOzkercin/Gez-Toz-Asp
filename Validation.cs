@@ -11,11 +11,11 @@ namespace geztoz_asp
         static DatabaseHandler dh = DatabaseHandler.getInitial();
 
         // Sign Up Validation Section
-        // validateRegisterUserEmpty signup sayfasındaki inputların boş olma durumunu veya girilen mail adresinin daha önce kullanılmış olma durumunu test ediyor.
+        // validateRegisterUserInputsEmpty signup sayfasındaki inputların boş olma durumunu veya girilen mail adresinin daha önce kullanılmış olma durumunu test ediyor.
         // validateVerifyPassword üye olurken girilen şifreler bir biri ile uyuşuyor mu onu test ediyor.
         // validateUserId userId üretiyor.
 
-        public static bool validateRegisterUserEmpty(string name, string surname, string email, string password)
+        public static bool validateRegisterUserInputsEmpty(string name, string surname, string email, string password)
         {
             if (name == "" || surname == "" || email == "" || password == "")
             {
@@ -85,7 +85,7 @@ namespace geztoz_asp
 
         //Travel add section. 
 
-        public static bool validateRegisterTravelEmpty(string driverName, string driverSurname, string fromDestination, string toDestination)
+        public static bool validateTravelRegisterInputsEmpty(string driverName, string driverSurname, string fromDestination, string toDestination)
         {
             if (driverName == "" || driverSurname == "" || fromDestination == "" || toDestination == "")
             {
@@ -115,7 +115,7 @@ namespace geztoz_asp
                 return false;
             }
 
-            if (availableSeat >= totalSeat)
+            if (availableSeat < 0 )
             {
                 MessageBox.Show("Tüm koltuklar dolu!");
                 return false;
@@ -139,7 +139,21 @@ namespace geztoz_asp
             return true;
         }
 
+        //Show Travels Section (Search.aspx kısmı)
+        public static bool validateTravelSearchInputsEmpty(string from, string to, int wantedSeat)
+        {
+            if (from == "" || to == "" || wantedSeat <= 0)
+            {
+                MessageBox.Show("Tüm alanlar dolu ve geçerli veriler olmalıdır.");
+                return false;
+            }
 
+            return true;
+        }
+        public static bool validateWantedSeat(int wantedSeat)
+        {
+            return wantedSeat > 0 ? true : false;
+        }
 
     }
 }

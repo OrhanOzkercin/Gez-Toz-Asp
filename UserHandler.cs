@@ -16,10 +16,7 @@ namespace geztoz_asp
 
         public static User user;
 
-        public void setNull()
-        {
-            user = null;
-        }
+       
         public string Id
         {
             get => id;
@@ -49,6 +46,11 @@ namespace geztoz_asp
         {
             get => travelsId;
             set => travelsId += value + "-";
+        }
+
+        public void setNull()
+        {
+            user = null;
         }
 
         private User(string id, string name, string surname, string email, string password, string travelsId = "")
@@ -83,6 +85,11 @@ namespace geztoz_asp
         private bool isValid =false;
         private UserHandler() { }
 
+        public void setNull()
+        {
+            userHandler = null;
+        }
+
         public static UserHandler getInitial()
         {
             if (userHandler == null)
@@ -96,19 +103,14 @@ namespace geztoz_asp
             }
         }
 
-        public void setNull()
-        {
-            userHandler = null;
-        }
-
+     
         // Register User Section
 
         public void registerUser(string name, string surname, string email, string password)
         {
-            isValid = Validation.validateRegisterUserEmpty(name, surname, email, password);
+            isValid = Validation.validateRegisterUserInputsEmpty(name, surname, email, password);
             if (isValid)
             {
-                
                 User user = User.getInitial(generateUserId(),name, surname, email, password);
                 userList.Add(user);
                 dh.addUser(user);

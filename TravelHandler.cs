@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace geztoz_asp
 {
@@ -69,6 +70,11 @@ namespace geztoz_asp
             set => this.travelDate = value;
         }
 
+        public void setNull()
+        {
+            travel = null;
+        }
+        
         Travel(string travelId, string driverId,string driverName, string driverSurname,string passengersId,int totalSeat,int availableSeat,string fromDestination,string toDestination,DateTime travelDate )
         {
             this.travelId = travelId;
@@ -81,7 +87,6 @@ namespace geztoz_asp
             this.fromDestination = fromDestination;
             this.toDestination = toDestination;
             this.travelDate = travelDate;
-
         }
 
         public static Travel getInitial(string travelId = "", string driverId= "", string driverName = "", string driverSurname = "", string passengersId = "", int totalSeat = 0, int availableSeat = 0, string fromDestination = "", string toDestination = "", DateTime travelDate = new DateTime())
@@ -105,9 +110,14 @@ namespace geztoz_asp
         private DatabaseHandler dh = DatabaseHandler.getInitial();
         static TravelHandler travelHandler;
         private bool isValidSeat = false;
-        private bool isValidRegister= false;
-        private bool isValidTraveDate = false;
+        private bool isEmpty= false;
+        private bool isValidTravelDate = false;
         private TravelHandler() { }
+
+        public void setNull()
+        {
+            travelHandler = null;
+        }
 
         public static TravelHandler getInitial()
         {
@@ -121,23 +131,22 @@ namespace geztoz_asp
                 return travelHandler;
             }
         }
-
-
-        public void setNull()
-        {
-            travelHandler = null;
-        }
-
+        
+        
         public void registerTravel(string driverId, string driverName,string driverSurname,int totalSeat, int availableSeat, string fromDestination, string toDestination, DateTime travelDate)
         {
             isValidSeat = Validation.validateSeat(totalSeat, availableSeat);
-            isValidRegister = Validation.validateRegisterTravelEmpty(driverName, driverSurname, fromDestination, toDestination);
-            isValidTraveDate = Validation.validateTravelDate(travelDate);
+            isEmpty = Validation.validateTravelRegisterInputsEmpty(driverName, driverSurname, fromDestination, toDestination);
+            isValidTravelDate = Validation.validateTravelDate(travelDate);
 
-            if (isValidSeat && isValidRegister && isValidTraveDate)
+            if (isValidSeat && isEmpty && isValidTravelDate)
             {
                 Travel travel = Travel.getInitial(generateTravelId(),driverId,driverName,driverSurname,"",totalSeat,availableSeat,fromDestination,toDestination,travelDate);
                 dh.addTravel(travel);
+                travel.setNull();
+                isEmpty = false;
+                isValidTravelDate = false;
+                isValidSeat = false;
             }
         }
 
@@ -146,8 +155,7 @@ namespace geztoz_asp
             bool isValid = false;
             string id = "travel-";
             Random random = new Random();
-            int randomNumber = random.Next(1, 1000000);
-            id += randomNumber.ToString();
+            id += random.Next(1, 1000000).ToString();
             isValid = Validation.validateTravelId(id);
             if (isValid)
             {
@@ -156,6 +164,22 @@ namespace geztoz_asp
             else
             {
                 return generateTravelId();
+            }
+        }
+
+        public List<Travel> getTravels(string from, string to, int wantedSeat, DateTime travelDate)
+        {
+            isEmpty = Validation.validateTravelSearchInputsEmpty(from, to, wantedSeat);
+            isValidTravelDate = Validation.validateTravelDate(travelDate);
+            isValidSeat = Validation.validateWantedSeat(wantedSeat);
+
+            if (isEmpty && isValidTravelDate && isValidSeat)
+            {
+                return dh.getFilteredTravels(from, to, wantedSeat, travelDate);
+            }
+            else
+            {
+                return new List<Travel>(); 
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 
@@ -11,6 +12,11 @@ namespace geztoz_asp
         private static DatabaseHandler dh;
         private DatabaseHandler(){}
 
+        public void setNull()
+        {
+            dh = null;
+        }
+
         public static DatabaseHandler getInitial()
         {
             if (dh == null)
@@ -22,11 +28,6 @@ namespace geztoz_asp
             {
                 return dh;
             }
-        }
-
-        public void setNull()
-        {
-            dh = null;
         }
 
         public List<string> getEmailsList()
@@ -58,6 +59,7 @@ namespace geztoz_asp
 
         }
 
+        //This part is all about user database operations.
 
         public void addUser(User user)
         {
@@ -93,21 +95,7 @@ namespace geztoz_asp
             return user;
         }
 
-        public List<string> getAllTravelIds()
-        {
-            List<string> travelIdList = new List<string>();
-            OleDbCommand select = new OleDbCommand("Select travelId from Travels", conn);
-            conn.Open();
-            
-            OleDbDataReader reader = select.ExecuteReader();
-            while (reader.Read())
-            {
-                travelIdList.Add(reader["travelId"].ToString());
-            }
-
-            conn.Close();
-            return travelIdList;
-        }
+        //This part is all about travel database operations. 
 
         public void addTravel(Travel travel)
         {
@@ -130,6 +118,42 @@ namespace geztoz_asp
             conn.Close();
         }
 
+        public List<string> getAllTravelIds()
+        {
+            List<string> travelIdList = new List<string>();
+            OleDbCommand select = new OleDbCommand("Select travelId from Travels", conn);
+            conn.Open();
+            
+            OleDbDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                travelIdList.Add(reader["travelId"].ToString());
+            }
+
+            conn.Close();
+            return travelIdList;
+        }
+
+        public List<Travel> getFilteredTravels(string from, string to, int availableSeat, DateTime travelDate)
+        {
+            List<Travel> filteredTravels = new List<Travel>();
+            OleDbCommand select = new OleDbCommand("Select * from Travels where from = @from and to=@to and availableSeat >= @availableSeat and travelDate = @travelDate ", conn);
+            conn.Open();
+            select.Parameters.AddWithValue("@from", from);
+            select.Parameters.AddWithValue("@to", to);
+            select.Parameters.AddWithValue("@availableSeat", availableSeat);
+            select.Parameters.AddWithValue("@travelDate", travelDate);
+            OleDbDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                Travel travel = Travel.getInitial(reader["travelId"].ToString(),reader["driverId"].ToString(),reader["driverName"].ToString(),reader["driverSurname"].ToString()
+                    ,reader["passengersId"].ToString(),int.Parse(reader["totalSeat"].ToString()),int.Parse(reader["availableSeat"].ToString()),from,to,travelDate);
+                travel.setNull();
+                filteredTravels.Add(travel);
+            }
+            conn.Close();
+            return filteredTravels;
+        }
     }
 }
 

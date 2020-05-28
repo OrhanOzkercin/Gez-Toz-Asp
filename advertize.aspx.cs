@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,13 +25,14 @@ namespace geztoz_asp
             }
             else
             {
-                string driverId = cookie["userId"].ToString();
-                string driverName = cookie["userName"].ToString();
-                string driverSurname = cookie["userSurname"].ToString();
-                string fromDestination = this.@from.Text;
+                
+                string driverId = ParseHandler.parseStringToUtf8(cookie["userId"]);
+                string driverName = ParseHandler.parseStringToUtf8(cookie["userName"]);
+                string driverSurname = ParseHandler.parseStringToUtf8(cookie["userSurname"]);
+                string fromDestination = (this.@from.Text);
                 string toDestination = this.to.Text;
                 int totalSeat = int.Parse(this.totalSeat.Text);
-                int availableSeat = 0;
+                int availableSeat = totalSeat;
                 DateTime travelDate = Convert.ToDateTime(date.Text);
                 TravelHandler travelHandler = TravelHandler.getInitial();
                 travelHandler.registerTravel(driverId,driverName,driverSurname,totalSeat,availableSeat, fromDestination, toDestination,travelDate);
