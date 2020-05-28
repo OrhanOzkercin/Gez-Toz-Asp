@@ -69,18 +69,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="advertize.aspx" />
-    <Content Include="aspects\images\bg.jpg" />
-    <Content Include="aspects\images\roadwomen.jpg" />
     <Content Include="aspects\images\indir.png" />
     <Content Include="aspects\images\logo-dark.png" />
     <Content Include="aspects\images\logo.png" />
-    <Content Include="aspects\images\minibus.jpg" />
     <Content Include="aspects\images\orhan.png" />
     <Content Include="css\responsive.css" />
     <Content Include="css\style.css" />
     <Content Include="css\utilities.css" />
     <Content Include="App_Data\main.mdb" />
-    <Content Include="js\main.js" />
     <Content Include="login.aspx" />
     <Content Include="search.aspx" />
     <Content Include="signup.aspx" />
@@ -133,6 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -19,7 +19,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-       	<body>
+       	<div class="body">
 		<header class="hero search">
 			<nav class="navbar">
 				<div class="logo">
@@ -178,7 +178,7 @@
 			<p>Copyright &copy; 2020</p>
 			<p>Made with ❤ by Orhan Özkerçin & Nur Sultan Bolel</p>
 		</footer>
-	</body>
+	</div>
     </form>
 </body>
 </html>
