@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -25,17 +26,27 @@ namespace geztoz_asp
             }
             else
             {
+                try
+                {
+                    string driverId = ParseHandler.parseStringToUtf8(cookie["userId"]);
+                    string driverName = ParseHandler.parseStringToUtf8(cookie["userName"]);
+                    string driverSurname = ParseHandler.parseStringToUtf8(cookie["userSurname"]);
+                    string fromDestination = (this.@from.Text);
+                    string toDestination = this.to.Text;
+                    int totalSeat = int.Parse(this.totalSeat.Text);
+                    int availableSeat = totalSeat;
+                    DateTime travelDate = Convert.ToDateTime(date.Text);
+                    TravelHandler travelHandler = TravelHandler.getInitial();
+                    travelHandler.registerTravel(driverId, driverName, driverSurname, totalSeat, availableSeat, fromDestination, toDestination, travelDate);
+                }
+                catch (Exception exception)
+                {
+                    validateAdvertize.Text = "Aradığınız kriterlere uygun yolculuk bulunamadı!";
+                    validateAdvertize.BackColor = Color.FromArgb(214, 51, 71);
+                    validateAdvertize.ForeColor = Color.White;
+                    validateAdvertize.Visible = true;
+                }
                 
-                string driverId = ParseHandler.parseStringToUtf8(cookie["userId"]);
-                string driverName = ParseHandler.parseStringToUtf8(cookie["userName"]);
-                string driverSurname = ParseHandler.parseStringToUtf8(cookie["userSurname"]);
-                string fromDestination = (this.@from.Text);
-                string toDestination = this.to.Text;
-                int totalSeat = int.Parse(this.totalSeat.Text);
-                int availableSeat = totalSeat;
-                DateTime travelDate = Convert.ToDateTime(date.Text);
-                TravelHandler travelHandler = TravelHandler.getInitial();
-                travelHandler.registerTravel(driverId,driverName,driverSurname,totalSeat,availableSeat, fromDestination, toDestination,travelDate);
             }
         }
     }

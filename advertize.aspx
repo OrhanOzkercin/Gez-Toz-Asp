@@ -173,8 +173,10 @@
                     <asp:Button ID="advertizeButton" runat="server"  CssClass="btn btn-secondary" Text="İlan Ver!" OnClick="advertizeButton_Click" />
                 </div>
 			</section>
+            <asp:Label ID="validateAdvertize" runat="server" Visible="False" Text="Label"></asp:Label>
+
 		</main>
-		<footer id="footer" class="bg-dark">
+		<footer id="footer" class="bg-dark advertize-footer">
 			<p>Copyright &copy; 2020</p>
 			<p>Made with ❤ by Orhan Özkerçin & Nur Sultan Bolel</p>
 		</footer>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,8 +32,13 @@ namespace geztoz_asp
                 addCookie(user);
                 Response.Redirect("homepage.aspx");
             }
-
-            
+            else
+            {
+                validateLabel.Text = "Kullanıcı adı ya da şifre hatalı!";
+                validateLabel.BackColor = Color.FromArgb(214,51,71);
+                validateLabel.ForeColor = Color.White;
+                validateLabel.Visible = true;
+            }
         }
 
         public HttpCookie addCookie(User user)

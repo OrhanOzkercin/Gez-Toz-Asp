@@ -19,7 +19,6 @@ namespace geztoz_asp
         {
             if (name == "" || surname == "" || email == "" || password == "")
             {
-                MessageBox.Show("Tüm alanları doldurmanız gerekmektedir.");
                 return false;
             }
            
@@ -65,7 +64,6 @@ namespace geztoz_asp
 
             if (email == "" || password == "")
             {
-                MessageBox.Show("Lütfen tüm alanları doldurun!");
             }
 
             foreach (var item in emailsList)
@@ -89,7 +87,6 @@ namespace geztoz_asp
         {
             if (driverName == "" || driverSurname == "" || fromDestination == "" || toDestination == "")
             {
-                MessageBox.Show("Tüm alanlar dolu olmalıdır.");
                 return false;
             }
 
@@ -100,7 +97,6 @@ namespace geztoz_asp
         {
             if (travelDate.Date <= DateTime.Now)
             {
-                MessageBox.Show("Lütfen geçerli bir tarih girin!");
                 return false;
             }
 
@@ -111,13 +107,11 @@ namespace geztoz_asp
         {
             if (totalSeat <= 0)
             {
-                MessageBox.Show("Kişi sayısı en az 1 olmalı");
                 return false;
             }
 
             if (availableSeat < 0 )
             {
-                MessageBox.Show("Tüm koltuklar dolu!");
                 return false;
             }
 
@@ -131,7 +125,6 @@ namespace geztoz_asp
             {
                 if (travelId == id)
                 {
-                    MessageBox.Show("Bu yolculuk zaten daha önce eklenmiş.");
                     return false;
                 }
             }
@@ -144,7 +137,6 @@ namespace geztoz_asp
         {
             if (from == "" || to == "" || wantedSeat <= 0)
             {
-                MessageBox.Show("Tüm alanlar dolu ve geçerli veriler olmalıdır.");
                 return false;
             }
 
