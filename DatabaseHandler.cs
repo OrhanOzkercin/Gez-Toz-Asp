@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Net.Configuration;
 
 namespace geztoz_asp
 {
-    
+
     public class DatabaseHandler
     {
         private static OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = C:\Users\egil_\Desktop\proje_asp\geztoz_asp\geztoz_asp\App_Data\main.mdb;Persist Security Info=True");
         private static DatabaseHandler dh;
-        private DatabaseHandler(){}
+        private DatabaseHandler() { }
 
         public void setNull()
         {
@@ -36,7 +37,7 @@ namespace geztoz_asp
             OleDbCommand select = new OleDbCommand("Select email from Users ", conn);
             conn.Open();
             OleDbDataReader reader = select.ExecuteReader();
-           
+
             while (reader.Read())
             {
                 emailList.Add(reader["email"].ToString());
@@ -52,7 +53,7 @@ namespace geztoz_asp
             select.Parameters.AddWithValue("@email", email);
             OleDbDataReader reader = select.ExecuteReader();
             reader.Read();
-           
+
             string element = reader["password"].ToString();
             conn.Close();
             return element;
@@ -63,7 +64,7 @@ namespace geztoz_asp
 
         public void addUser(User user)
         {
-          
+
             OleDbCommand insert = new OleDbCommand("INSERT INTO Users (userId,name,surname,email,[password],travelsId)" +
                                                    "VALUES (@userId,@name,@surname,@email,@password,@travelsId)", conn);
             conn.Open();
@@ -88,13 +89,36 @@ namespace geztoz_asp
             OleDbDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
-               user = User.getInitial(reader["userId"].ToString(), reader["name"].ToString(), reader["surname"].ToString(), reader["email"].ToString(),
-                                        reader["password"].ToString(), reader["travelsId"].ToString());
+                user = User.getInitial(reader["userId"].ToString(), reader["name"].ToString(), reader["surname"].ToString(), reader["email"].ToString(),
+                                         reader["password"].ToString(), reader["travelsId"].ToString());
             }
             conn.Close();
             return user;
         }
 
+        public bool updateUser(User user)
+        {
+
+            try
+            {
+                OleDbCommand update = new OleDbCommand("UPDATE Users SET [name] = @name, [surname] = @surname, [email] = @email, [password] = @password WHERE [userId] = @userId", conn);
+
+                conn.Open();
+                update.Parameters.AddWithValue("@name", user.Name);
+                update.Parameters.AddWithValue("@surname", user.Surname);
+                update.Parameters.AddWithValue("@email", user.Email);
+                update.Parameters.AddWithValue("@password", user.Password);
+                update.Parameters.AddWithValue("@userId", user.Id);
+
+                update.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
         //This part is all about travel database operations. 
 
         public void addTravel(Travel travel)
@@ -123,7 +147,7 @@ namespace geztoz_asp
             List<string> travelIdList = new List<string>();
             OleDbCommand select = new OleDbCommand("Select travelId from Travels", conn);
             conn.Open();
-            
+
             OleDbDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
@@ -146,13 +170,80 @@ namespace geztoz_asp
             OleDbDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
-                Travel travel = Travel.getInitial(reader["travelId"].ToString(),reader["driverId"].ToString(),reader["driverName"].ToString(),reader["driverSurname"].ToString()
-                    ,reader["passengersId"].ToString(),int.Parse(reader["totalSeat"].ToString()),int.Parse(reader["availableSeat"].ToString()),from,to,travelDate);
+                Travel travel = Travel.getInitial(reader["travelId"].ToString(), reader["driverId"].ToString(), reader["driverName"].ToString(), reader["driverSurname"].ToString()
+                    , reader["passengersId"].ToString(), int.Parse(reader["totalSeat"].ToString()), int.Parse(reader["availableSeat"].ToString()), from, to, travelDate);
                 travel.setNull();
                 filteredTravels.Add(travel);
             }
             conn.Close();
             return filteredTravels;
+        }
+
+        public Travel getTravelByTravelId(string travelId)
+        {
+            Travel travel = null;
+            OleDbCommand select = new OleDbCommand("Select * from Travels where travelId = @travelId ", conn);
+            conn.Open();
+            select.Parameters.AddWithValue("@travelId", travelId);
+            OleDbDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                travel = Travel.getInitial(reader["travelId"].ToString(), reader["driverId"].ToString(), reader["driverName"].ToString(), reader["driverSurname"].ToString()
+                   , reader["passengersId"].ToString(), int.Parse(reader["totalSeat"].ToString()), int.Parse(reader["availableSeat"].ToString()), reader["from"].ToString(), reader["to"].ToString(), DateTime.Parse(reader["travelDate"].ToString()));
+                travel.setNull();
+            }
+            conn.Close();
+            return travel;
+        }
+
+        private string getAllPassengerIdsFromCertainTravel(Travel travel)
+        {
+            string passengerId = "";
+            OleDbCommand select = new OleDbCommand("Select * from Travels where travelId = @travelId", conn);
+            conn.Open();
+            select.Parameters.AddWithValue("@travelId", travel.TravelId);
+            OleDbDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                passengerId = reader["passengersId"].ToString();
+            }
+
+            conn.Close();
+            return passengerId;
+        }
+
+        public bool updatePassengers(string travelId, string passengerId)
+        {
+            bool isValid = false;
+            Travel travel = getTravelByTravelId(travelId);
+            string existPassengerId = getAllPassengerIdsFromCertainTravel(getTravelByTravelId(travelId));
+            isValid = Validation.validateIsPassengerAlreadySignUpForCertainTravel(existPassengerId, passengerId, travel.DriverId);
+            existPassengerId = existPassengerId == "" ? (existPassengerId = passengerId) : (existPassengerId += "/" + passengerId);
+            if (isValid)
+            {
+                try
+                {
+                    OleDbCommand update = new OleDbCommand("UPDATE Travels SET [passengersId] = @passengersId WHERE [travelId] = @travelId ", conn);
+
+                    conn.Open();
+                    update.Parameters.Add("@passengersId", existPassengerId);
+                    update.Parameters.Add("@travelId", travelId);
+
+                    update.ExecuteNonQuery();
+                    conn.Close();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

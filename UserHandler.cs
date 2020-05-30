@@ -106,7 +106,7 @@ namespace geztoz_asp
      
         // Register User Section
 
-        public void registerUser(string name, string surname, string email, string password)
+        public bool registerUser(string name, string surname, string email, string password)
         {
             isValid = Validation.validateRegisterUserInputsEmpty(name, surname, email, password);
             if (isValid)
@@ -115,7 +115,10 @@ namespace geztoz_asp
                 userList.Add(user);
                 dh.addUser(user);
                 isValid = false;
+                return true;
             }
+
+            return false;
         }
 
         private string generateUserId()
@@ -151,7 +154,21 @@ namespace geztoz_asp
            
         }
 
-        
+        // Update Profile
 
+        public bool updateUser(string name, string surname, string email, string password)
+        {
+            User user = User.getInitial();
+            user.Name = name;
+            user.Surname = surname;
+            user.Email = email;
+            user.Password = password;
+            return dh.updateUser(user) ? true : false;
+        }
+
+        public User getUserByEmailFromDatabase(string email)
+        {
+            return dh.getUser(email);
+        }
     }
 }

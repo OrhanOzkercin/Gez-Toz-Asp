@@ -91,6 +91,8 @@
                     <footer id="form-footer">
                         <p>Zaten hesabın var mı? <a href="login.aspx">Giriş yap</a></p>
                     </footer>
+                    
+                    <asp:Label ID="validateSignup" runat="server" Visible="False" ></asp:Label>
                 </div>
             </div>
         </main>

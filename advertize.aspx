@@ -51,21 +51,23 @@
 						</div>
 						<div class="d-vertical"></div>--%>
 						<div class="column-2">
-							<h3>Hoş Geldin Orhan</h3>
+							<h3 ID="advertizeWelcomeLabel" runat="server"></h3>
 							<div>
 								<i class="fas fa-car-side"></i>
-								<p>Yolculuk için güzel bir gün</p>
-							</div>
-						</div>
-						<div class="d-vertical"></div>
-						<div class="column-3">
+                                <p ID="advertizeWelcomeParagraph" runat="server">Yolculuk için güzel bir gün</p>
+                            </div>
 							
-                            <asp:Button ID="newAdv" runat="server" CssClass="btn" Text="Yeni Bir İlan Ver" />
-                            <asp:Button ID="profile" runat="server" CssClass="btn" Text="Profiline Git" />
-                            <asp:Button ID="exit" runat="server" CssClass="btn" Text="Çıkış" />
+                            <asp:Button ID="advertizeLogin" runat="server"  Visible="False" CssClass="btn" Text="Giriş" OnClick="advertizeLogin_Click"/>
+						</div>
+						<div ID="advertizeDiveder" class="d-vertical" runat="server" Visible="False"></div>
+						<div ID="advertizeButtons" class="column-3" runat="server" Visible="False">
+                            <a href="#p3" class="btn">Yeni Bir İlan Ver</a>
+                            <a href="profile.aspx" class="btn">Profiline Git</a>
+                            
+                            <asp:Button ID="exit" runat="server" CssClass="btn" Text="Çıkış" OnClick="exit_Click" />
 
 							<%--<a href="#p3" class="btn">Yeni Bir İlan Ver</a>--%>
-<%--							<a href="" class="btn">Profiline Git</a>
+<%--							
                             <a href="" class="btn">Çıkış</a>--%>
 						</div>
 					</div>
@@ -73,7 +75,7 @@
 			</div>
 
 			<!-- Search Section -->
-			<section id="p3" class="advertizes search-icons icons bg-light">
+			<section id="p3" class="advertizes search-icons icons bg-light" runat="server" Visible="False">
 				
                 <div class="flex-items">
                     <div>

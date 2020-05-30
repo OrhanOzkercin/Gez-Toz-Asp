@@ -142,9 +142,24 @@ namespace geztoz_asp
 
             return true;
         }
+        
         public static bool validateWantedSeat(int wantedSeat)
         {
             return wantedSeat > 0 ? true : false;
+        }
+
+        public static bool validateIsPassengerAlreadySignUpForCertainTravel(string existPassengersIds, string newPassengerId,string driverId)
+        {
+            string[] existPassengersIdsArray = existPassengersIds.Split('/');
+            foreach (var passengerId in existPassengersIdsArray)
+            {
+                if (newPassengerId == passengerId || newPassengerId == driverId)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
     }

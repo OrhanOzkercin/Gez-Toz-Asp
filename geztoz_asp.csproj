@@ -86,6 +86,7 @@
     <Content Include="signup.aspx" />
     <Content Include="Web.config" />
     <Content Include="homepage.aspx" />
+    <Content Include="profile.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="advertize.aspx.cs">
@@ -131,6 +132,13 @@
     <Compile Include="TravelHandler.cs" />
     <Compile Include="UserHandler.cs" />
     <Compile Include="Validation.cs" />
+    <Compile Include="profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

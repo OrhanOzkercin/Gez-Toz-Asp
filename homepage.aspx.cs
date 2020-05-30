@@ -36,5 +36,10 @@ namespace geztoz_asp
             Response.Redirect(Request.RawUrl);
             
         }
+
+        protected void homepageProfileClick(object sender, EventArgs e)
+        {
+           Response.Redirect("profile.aspx");
+        }
     }
 }

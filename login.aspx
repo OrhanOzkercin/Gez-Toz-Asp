@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 
                                 <asp:Label ID="loginPasswordLabel" runat="server" AssociatedControlID="loginPassword" Text="Şifre"></asp:Label>
-                                <asp:TextBox  ID="loginPassword" runat="server"></asp:TextBox>
+                                <asp:TextBox  ID="loginPassword" runat="server" TextMode="Password"></asp:TextBox>
                                 
 
                                <%-- <label for="password">Şifre</label>

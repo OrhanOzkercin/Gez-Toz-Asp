@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace geztoz_asp
@@ -18,19 +19,32 @@ namespace geztoz_asp
             var isValid = Validation.validateVerifyPassword(signupPassword.Text, signupPasswordVerif.Text);
             if (!isValid)
             {
-                MessageBox.Show("Girilen şifreler uyuşmuyor!");
-                
+                validateSignup.Text = "Girilen şifreler uyuşmuyor!!";
+                validateSignup.BackColor = Color.FromArgb(232, 74, 95);
+                validateSignup.ForeColor = Color.White;
+                validateSignup.Visible = true;
+
             }
             else
             {
                 try
                 {
-                    userHandler.registerUser(signupName.Text, signUpSurname.Text, signupEmail.Text, signupPassword.Text);
+                    if (userHandler.registerUser(signupName.Text, signUpSurname.Text, signupEmail.Text, signupPassword.Text))
+                    {
+                        Response.Redirect("homepage.aspx");
+                    }
+                        
+                    else
+                    {
+                        validateSignup.Text = "Tüm alanları doğru bir şekilde doldurunuz";
+                        validateSignup.BackColor = Color.FromArgb(232, 74, 95);
+                        validateSignup.ForeColor = Color.White;
+                        validateSignup.Visible = true;
+                    }
                 }
                 catch (Exception exception)
                 {
-                    MessageBox.Show(exception.Message);
-                    throw;
+                   
                 }
             }
             

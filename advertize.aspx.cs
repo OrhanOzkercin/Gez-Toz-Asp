@@ -14,7 +14,23 @@ namespace geztoz_asp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie cookie = Request.Cookies["Preferences"];
 
+            if (cookie == null)
+            {
+                advertizeLogin.Visible = true;
+                advertizeWelcomeLabel.InnerText = "Hoş Geldiniz";
+                advertizeWelcomeParagraph.InnerText = "İlan verebilmek için giriş yapmalısınız!";
+            }
+            else
+            {
+                advertizeDiveder.Visible = true;
+                advertizeButtons.Visible = true;
+                p3.Visible = true;
+                advertizeWelcomeLabel.InnerText= "Hoş Geldin" +" " + cookie["userName"];
+                advertizeWelcomeParagraph.InnerText= "Yolculuk için güzel bir gün!";
+                
+            }
         }
 
         protected void advertizeButton_Click(object sender, EventArgs e)
@@ -22,17 +38,21 @@ namespace geztoz_asp
             HttpCookie cookie = Request.Cookies["Preferences"];
             if (cookie == null)
             {
-                MessageBox.Show("Önce giriş yapın");
+                advertizeWelcomeLabel.InnerText = "Hoş Geldiniz";
+                advertizeWelcomeParagraph.InnerText = "İlan verebilmek için giriş yapmalısınız!";
             }
             else
             {
+                advertizeWelcomeLabel.InnerText = "Hoş Geldin" + cookie["userName"];
+                advertizeWelcomeParagraph.InnerText = "Yolculuk için güzel bir gün!";
+                advertizeButtons.Visible = true;
                 try
                 {
-                    string driverId = ParseHandler.parseStringToUtf8(cookie["userId"]);
-                    string driverName = ParseHandler.parseStringToUtf8(cookie["userName"]);
-                    string driverSurname = ParseHandler.parseStringToUtf8(cookie["userSurname"]);
-                    string fromDestination = (this.@from.Text);
-                    string toDestination = this.to.Text;
+                    string driverId = cookie["userId"];
+                    string driverName = (cookie["userName"]);
+                    string driverSurname = (cookie["userSurname"]);
+                    string fromDestination = (this.@from.Text).ToLower();
+                    string toDestination = this.to.Text.ToLower();
                     int totalSeat = int.Parse(this.totalSeat.Text);
                     int availableSeat = totalSeat;
                     DateTime travelDate = Convert.ToDateTime(date.Text);
@@ -48,6 +68,17 @@ namespace geztoz_asp
                 }
                 
             }
+        }
+
+        protected void advertizeLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx");
+        }
+
+        protected void exit_Click(object sender, EventArgs e)
+        {
+            LogOut logOut = new LogOut();
+            Response.Redirect("homepage.aspx");
         }
     }
 }

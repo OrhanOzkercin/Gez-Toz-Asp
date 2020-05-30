@@ -9,6 +9,7 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
 
     <link rel="stylesheet" href="css/utilities.css" />
@@ -21,6 +22,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:Button ID="Button_1" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
+    <asp:Button ID="Button_2" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
+    <asp:Button ID="Button_3" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
+    <asp:Button ID="Button_4" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
+    <asp:Button ID="Button_5" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
+   
         <div class="body ">
             <header class="hero search">
                 <nav class="navbar">
@@ -102,7 +109,7 @@
                         <%--<button class="btn btn-secondary">Ara</button>--%>
                     </div>
                 </section>
-                <asp:Label ID="validateSearch" runat="server" Visible="False" Text="Label"></asp:Label>
+            <asp:Label ID="validateSearch" runat="server" Visible="False" Text="Label"></asp:Label>
 
                 <!-- Road List -->
                 <asp:Panel ID="filteredTravelsPanel" runat="server">
@@ -184,6 +191,7 @@
                             </div>
                         </div>
                     </div>
+               
                     <%-- <div class="row">
                         <div class="column">
                             <div class="column-1">
@@ -344,9 +352,10 @@
                             </div>
                         </div>
                     </div>--%>
+                
                 </section>
             </main>
-            <footer id="footer" class="bg-dark search-footer">
+            <footer id="footer"  class="bg-dark search-footer">
                 <p>Copyright &copy; 2020</p>
                 <p>Made with ❤ by Orhan Özkerçin & Nur Sultan Bolel</p>
             </footer>

@@ -35,7 +35,8 @@
 				<div id="loginedSide" runat="server" Visible="False">
                     <p id="welcomeText" runat="server" >Hoş geldin </p>
 					<div>
-					<asp:Button runat="server" CssClass="btn btn-primary" Text="Profil"/>
+						<%--<a href="profile.aspx" class="btn btn-primary"> Profil</a>--%>
+					<asp:Button runat="server" CssClass="btn btn-primary" Text="Profil" OnClick="homepageProfileClick"/>
                     <asp:Button runat="server" CssClass="btn btn-secondary" Text="Çıkış" OnClick="Unnamed2_Click"/>
                     </div>
                 </div>

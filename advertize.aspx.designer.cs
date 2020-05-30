@@ -24,22 +24,49 @@ namespace geztoz_asp
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// newAdv control.
+        /// advertizeWelcomeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button newAdv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl advertizeWelcomeLabel;
 
         /// <summary>
-        /// profile control.
+        /// advertizeWelcomeParagraph control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button profile;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl advertizeWelcomeParagraph;
+
+        /// <summary>
+        /// advertizeLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button advertizeLogin;
+
+        /// <summary>
+        /// advertizeDiveder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl advertizeDiveder;
+
+        /// <summary>
+        /// advertizeButtons control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl advertizeButtons;
 
         /// <summary>
         /// exit control.
@@ -49,6 +76,15 @@ namespace geztoz_asp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button exit;
+
+        /// <summary>
+        /// p3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl p3;
 
         /// <summary>
         /// from control.

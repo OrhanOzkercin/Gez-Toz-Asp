@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -14,32 +15,62 @@ namespace geztoz_asp
 {
     public partial class search : System.Web.UI.Page
     {
+        DatabaseHandler dh = DatabaseHandler.getInitial();
         TravelHandler travelHandler = TravelHandler.getInitial();
+        List<Button> btnList = new List<Button>();
+
+        private int counter = 0;
+        ArrayList idList = new ArrayList();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnList.Add(Button_1);
+            btnList.Add(Button_2);
+            btnList.Add(Button_3);
+            btnList.Add(Button_4);
+            btnList.Add(Button_5);
+            if (this.IsPostBack)
+            {
+                idList = (ArrayList)ViewState["uygun_seferler"];
+            }
+        }
 
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            ViewState["uygun_seferler"] = idList;
         }
 
         protected void searchButton_Click(object sender, EventArgs e)
         {
             try
             {
-                List<Travel> filteredTravels = travelHandler.getTravels(@from.Text, to.Text, int.Parse(wantedSeat.Text), DateTime.Parse(travelDate.Text).Date);
+                List<Travel> filteredTravels = travelHandler.getTravels(@from.Text.ToLower(), to.Text.ToLower(), int.Parse(wantedSeat.Text), DateTime.Parse(travelDate.Text).Date);
+                counter = 0;
+                if (filteredTravels.Count <= 0)
+                {
+                    validateSearch.Text = "Aradığınız kriterlere uygun yolculuk yoktur!";
+                    validateSearch.BackColor = Color.FromArgb(232,74 , 95);
+                    validateSearch.ForeColor = Color.White;
+                    validateSearch.Visible = true;
+                }
+                else
+                {
+                    validateSearch.Visible = false;
+                }
                 for (int i = 0; i < filteredTravels.Count; i++)
                 {
                     filteredTravelsPanel.Controls.Add(createAvailableTravel(filteredTravels[i], i));
+                    counter += 1;
+                    idList.Add(filteredTravels[i].TravelId);
                 }
-
             }
             catch (Exception exception)
             {
-                validateSearch.Text = "Aradığınız kriterlere uygun yolculuk bulunamadı!";
+                validateSearch.Text = "Lütfen doğru şekilde arama yapınız!";
                 validateSearch.BackColor = Color.FromArgb(214, 51, 71);
                 validateSearch.ForeColor = Color.White;
                 validateSearch.Visible = true;
             }
-
-            
         }
 
         private HtmlGenericControl createAvailableTravel(Travel travel, int idNumber)
@@ -84,7 +115,7 @@ namespace geztoz_asp
             contents.Controls.Add(column1ContentItems_1);
 
             HtmlGenericControl iconUser1 = new HtmlGenericControl("i");
-            iconUser1.Attributes.Add("class", "far fa-user");
+            iconUser1.Attributes.Add("class", "fas fa-user");
 
             column1ContentItems_1.Controls.Add(iconUser1);
 
@@ -120,25 +151,25 @@ namespace geztoz_asp
             column1ContentItems_2.Controls.Add(p_2);
 
 
-            HtmlGenericControl column1ContentItems_3 = new HtmlGenericControl("div");
-            column1ContentItems_3.Attributes.Add("class", "content-items");
+            //HtmlGenericControl column1ContentItems_3 = new HtmlGenericControl("div");
+            //column1ContentItems_3.Attributes.Add("class", "content-items");
 
-            contents.Controls.Add(column1ContentItems_3);
+            //contents.Controls.Add(column1ContentItems_3);
 
-            HtmlGenericControl iconUser3 = new HtmlGenericControl("i");
-            iconUser3.Attributes.Add("class", "far fa-user");
+            //HtmlGenericControl iconUser3 = new HtmlGenericControl("i");
+            //iconUser3.Attributes.Add("class", "far fa-alt");
 
-            column1ContentItems_3.Controls.Add(iconUser3);
+            //column1ContentItems_3.Controls.Add(iconUser3);
 
-            HtmlGenericControl h3_3 = new HtmlGenericControl("h3");
-            h3_3.InnerText = "Yaş:";
+            //HtmlGenericControl h3_3 = new HtmlGenericControl("h3");
+            //h3_3.InnerText = "Yaş:";
 
-            column1ContentItems_3.Controls.Add(h3_3);
+            //column1ContentItems_3.Controls.Add(h3_3);
 
-            HtmlGenericControl p_3 = new HtmlGenericControl("p");
-            p_3.InnerText = "23:düzelt";
+            //HtmlGenericControl p_3 = new HtmlGenericControl("p");
+            //p_3.InnerText = "23:düzelt";
 
-            column1ContentItems_3.Controls.Add(p_3);
+            //column1ContentItems_3.Controls.Add(p_3);
 
 
 
@@ -173,7 +204,7 @@ namespace geztoz_asp
             contents_2.Controls.Add(column2ContentItems_1);
 
             HtmlGenericControl iconUser2_1 = new HtmlGenericControl("i");
-            iconUser2_1.Attributes.Add("class", "far fa-user");
+            iconUser2_1.Attributes.Add("class", "fas fa-map-marker");
 
             column2ContentItems_1.Controls.Add(iconUser2_1);
 
@@ -193,7 +224,7 @@ namespace geztoz_asp
             contents_2.Controls.Add(column2ContentItems_2);
 
             HtmlGenericControl iconUser2_2 = new HtmlGenericControl("i");
-            iconUser2_2.Attributes.Add("class", "far fa-user");
+            iconUser2_2.Attributes.Add("class", "fas fa-location-arrow");
 
             column2ContentItems_2.Controls.Add(iconUser2_2);
 
@@ -214,7 +245,7 @@ namespace geztoz_asp
             contents_2.Controls.Add(column2ContentItems_3);
 
             HtmlGenericControl iconUser2_3 = new HtmlGenericControl("i");
-            iconUser2_3.Attributes.Add("class", "far fa-user");
+            iconUser2_3.Attributes.Add("class", "fas fa-calendar-day");
 
             column2ContentItems_3.Controls.Add(iconUser2_3);
 
@@ -224,7 +255,7 @@ namespace geztoz_asp
             column2ContentItems_3.Controls.Add(h3_2_3);
 
             HtmlGenericControl p_2_3 = new HtmlGenericControl("p");
-            p_2_3.InnerText = travel.TravelDate.ToString();
+            p_2_3.InnerText = travel.TravelDate.Year.ToString();
 
             column2ContentItems_3.Controls.Add(p_2_3);
 
@@ -263,12 +294,12 @@ namespace geztoz_asp
 
 
             HtmlGenericControl iconUser3_2 = new HtmlGenericControl("i");
-            iconUser3_2.Attributes.Add("class", "far fa-user");
+            iconUser3_2.Attributes.Add("class", "fas fa-user");
 
             content_items_2.Controls.Add(iconUser3_2);
 
             HtmlGenericControl h3_3_2 = new HtmlGenericControl("h3");
-            h3_3_2.InnerText = "Toplam Kişi:";
+            h3_3_2.InnerText = "Boş Yer:";
 
             content_items_2.Controls.Add(h3_3_2);
 
@@ -303,21 +334,50 @@ namespace geztoz_asp
 
             contentContainer3.Controls.Add(contentContainer3_contents);
 
-            Button btnYolculugaKatıl = new Button();
-            btnYolculugaKatıl.Attributes.Add("class", "btn");
-            btnYolculugaKatıl.Text = "Bu yolculuğa Katıl";
-            btnYolculugaKatıl.Click += new EventHandler(btnYolculugaKatıl_click);
 
+            //Button buttonName = new Button();
+            //buttonName.ID = "button" + idNumber.ToString();
+            //buttonName.Attributes.Add("class", "btn");
+            //buttonName.Text = "Bu yolculuğa Katıl";
+            //buttonName.Click += new EventHandler(btnYolculugaKatil_Click);
+            //contentContainer3_contents.Controls.Add(buttonName);
 
-            contentContainer3_contents.Controls.Add(btnYolculugaKatıl);
+            
+            contentContainer3_contents.Controls.Add(btnList[counter]);
+            btnList[counter].Visible = true;
+
 
             return section;
         }
-
-
-        protected void btnYolculugaKatıl_click(object sender, EventArgs e)
+        
+        protected void btnJoinTravel(object sender, EventArgs e)
         {
-            MessageBox.Show("aaa");
+            HttpCookie cookie = Request.Cookies["Preferences"];
+
+            if (cookie == null)
+            {
+                validateSearch.Text = "Yolculuğa kayıt olabilmek için giriş yapmalısınız!";
+                validateSearch.BackColor = Color.FromArgb(232, 74, 95);
+                validateSearch.ForeColor = Color.White;
+                validateSearch.Visible = true;
+            }
+
+            else
+            {
+                Button btn = (Button)sender;
+                string[] words = btn.ID.Split('_');
+                int index = Int32.Parse(words[1]);
+
+                if (!dh.updatePassengers(idList[index - 1].ToString(), cookie["userId"].ToString()))
+                {
+                    validateSearch.Text = "Bu yolculuğa daha önce kayıt olmuşsunuz ya da yolculuk ilanı size ait!";
+                    validateSearch.BackColor = Color.FromArgb(232, 74, 95);
+                    validateSearch.ForeColor = Color.White;
+                    validateSearch.Visible = true;
+                }
+
+               
+            }
         }
 
     }
