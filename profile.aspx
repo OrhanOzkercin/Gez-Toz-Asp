@@ -93,16 +93,16 @@
 									</div>
 								</div>
 								
-                                <asp:Label ID="validateProfile" runat="server"  Visible="False"></asp:Label>
+                               
 
 								<div class="flex-item">
-									
-                                   
                                     <asp:Button ID="profileUpdateButton" runat="server"  CssClass="btn" Text="Güncelle" OnClick="profileUpdateButton_Click"  />
-
-									<%--<a href="#" class="btn">Güncelle</a>--%>
+                                    <%--<a href="#" class="btn">Güncelle</a>--%>
 								</div>
+								
+                                
 							</div>
+                            <asp:Label ID="validateProfile" runat="server"  Visible="False"></asp:Label>
 						</div>
 					</div>
 					<%--<div class="column" style="display: none;">

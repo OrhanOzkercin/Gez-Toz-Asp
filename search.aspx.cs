@@ -352,6 +352,7 @@ namespace geztoz_asp
         
         protected void btnJoinTravel(object sender, EventArgs e)
         {
+            
             HttpCookie cookie = Request.Cookies["Preferences"];
 
             if (cookie == null)
@@ -375,8 +376,15 @@ namespace geztoz_asp
                     validateSearch.ForeColor = Color.White;
                     validateSearch.Visible = true;
                 }
+                else
+                {
+                    validateSearch.Text = "Yolculuğa kaydınız başarı ile yapıldı.";
+                    validateSearch.BackColor = Color.FromArgb(208, 234, 163);
+                    validateSearch.ForeColor = Color.Black;
+                    validateSearch.Visible = true;
+                }
 
-               
+
             }
         }
 

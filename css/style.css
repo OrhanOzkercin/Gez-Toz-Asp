@@ -589,26 +589,30 @@ img {
 }
 
 #validateLabel, #validateSearch, #validateAdvertize, #validateProfile, #validateSignup {
-	display: block;
-	padding: 10px;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	align-self: center;
+    display: block;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    font-size: 1.3rem;
 }
+
 #validateSearch, #validateAdvertize {
-	margin: 10px;
-	font-size: 1.3rem;
+	width: 99.1vw;
+	margin: 30px;
+	font-size: 1.5rem;
 }
 
-
+#validateProfile {
+    padding: 10px 100px;
+}
 /* 
 
 
 
  */
 /* Profile Page */
-
 .profile .column:last-child {
 	flex-grow: 3;
 }

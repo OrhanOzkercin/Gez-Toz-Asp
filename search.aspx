@@ -108,8 +108,9 @@
                         <asp:Button ID="searchButton" runat="server" CssClass="btn btn-secondary" Text="Ara" OnClick="searchButton_Click" />
                         <%--<button class="btn btn-secondary">Ara</button>--%>
                     </div>
+                    <asp:Label ID="validateSearch" runat="server" Visible="False" Text="Label"></asp:Label>
                 </section>
-            <asp:Label ID="validateSearch" runat="server" Visible="False" Text="Label"></asp:Label>
+            
 
                 <!-- Road List -->
                 <asp:Panel ID="filteredTravelsPanel" runat="server">
@@ -192,166 +193,7 @@
                         </div>
                     </div>
                
-                    <%-- <div class="row">
-                        <div class="column">
-                            <div class="column-1">
-                                <h4>Şoför Bilgileri</h4>
-                                <div class="content-container">
-                                    <div class="contents">
-                                        <div class="content-items">
-                                            <i class="far fa-user"></i>
-                                            <h3>İsim:</h3>
-                                            <p>Orhan</p>
-                                        </div>
-                                        <div class="content-items">
-                                            <i class="fas fa-user"></i>
-                                            <h3>Soyisim:</h3>
-                                            <p>Özkerçin</p>
-                                        </div>
-                                        <div class="content-items">
-                                            <i class="fas fa-venus-mars"></i>
-                                            <h3>Cinsiyet:</h3>
-                                            <p>Erkek</p>
-                                        </div>
-                                        <div class="content-items">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <h3>Yaş:</h3>
-                                            <p>22</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="column-2">
-                                <h4>Yolculuk Bilgileri</h4>
-                                <div class="content-container">
-                                    <div class="contents">
-                                        <div class="content-items">
-                                            <i class="fas fa-map-marker"></i>
-                                            <h3>Nereden:</h3>
-                                            <p>İzmir</p>
-                                        </div>
-
-                                        <div class="content-items">
-                                            <i class="fas fa-location-arrow"></i>
-                                            <h3>Nereye:</h3>
-                                            <p>İstanbul</p>
-                                        </div>
-
-                                        <div class="content-items">
-                                            <i class="fas fa-calendar-day"></i>
-                                            <h3>Ne zaman:</h3>
-                                            <p>23 Haziran</p>
-                                        </div>
-
-                                        <div class="last-item">
-                                            <div class="content-items">
-                                                <i class="fas fa-user"></i>
-                                                <h3>Toplam Kişi:</h3>
-                                                <p>3</p>
-                                            </div>
-                                            <div class="content-items">
-                                                <i class="far fa-user"></i>
-                                                <h3>Kalan Kişi:</h3>
-                                                <p>2</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="column-3">
-                                <h4>Yolculuk Seni Bekler</h4>
-                                <div class="content-container">
-                                    <div class="contents">
-                                        <button class="btn">Bu yolculuğa Katıl</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
-                    <%--<div class="row">
-                        <div class="column">
-                            <div class="column-1">
-                                <h4>Şoför Bilgileri</h4>
-                                <div class="content-container">
-                                    <div class="contents">
-                                        <div class="content-items">
-                                            <i class="far fa-user"></i>
-                                            <h3>İsim:</h3>
-                                            <p>Orhan</p>
-                                        </div>
-                                        <div class="content-items">
-                                            <i class="fas fa-user"></i>
-                                            <h3>Soyisim:</h3>
-                                            <p>Özkerçin</p>
-                                        </div>
-                                        <div class="content-items">
-                                            <i class="fas fa-venus-mars"></i>
-                                            <h3>Cinsiyet:</h3>
-                                            <p>Erkek</p>
-                                        </div>
-                                        <div class="content-items">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <h3>Yaş:</h3>
-                                            <p>22</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="column-2">
-                                <h4>Yolculuk Bilgileri</h4>
-                                <div class="content-container">
-                                    <div class="contents">
-                                        <div class="content-items">
-                                            <i class="fas fa-map-marker"></i>
-                                            <h3>Nereden:</h3>
-                                            <p>İzmir</p>
-                                        </div>
-
-                                        <div class="content-items">
-                                            <i class="fas fa-location-arrow"></i>
-                                            <h3>Nereye:</h3>
-                                            <p>İstanbul</p>
-                                        </div>
-
-                                        <div class="content-items">
-                                            <i class="fas fa-calendar-day"></i>
-                                            <h3>Ne zaman:</h3>
-                                            <p>23 Haziran</p>
-                                        </div>
-
-                                        <div class="last-item">
-                                            <div class="content-items">
-                                                <i class="fas fa-user"></i>
-                                                <h3>Toplam Kişi:</h3>
-                                                <p>3</p>
-                                            </div>
-                                            <div class="content-items">
-                                                <i class="far fa-user"></i>
-                                                <h3>Kalan Kişi:</h3>
-                                                <p>2</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="column-3">
-                                <h4>Yolculuk Seni Bekler</h4>
-                                <div class="content-container">
-                                    <div class="contents">
-                                        <button class="btn">Bu yolculuğa Katıl</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
+              
                 
                 </section>
             </main>

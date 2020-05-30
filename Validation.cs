@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Web.Services.Description;
 using System.Windows.Forms;
 
@@ -15,6 +16,19 @@ namespace geztoz_asp
         // validateVerifyPassword üye olurken girilen şifreler bir biri ile uyuşuyor mu onu test ediyor.
         // validateUserId userId üretiyor.
 
+        public static bool validateEmailIsAvailable(string email)
+        {
+            List<string> emailList = dh.getEmailsList();
+            if (emailList.Contains(email))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public static bool validateRegisterUserInputsEmpty(string name, string surname, string email, string password)
         {
             if (name == "" || surname == "" || email == "" || password == "")
@@ -24,12 +38,7 @@ namespace geztoz_asp
            
             else
             {
-                List<string> emailList = dh.getEmailsList();
-                if (emailList.Contains(email))
-                {
-                    return false;
-                }
-                else
+                if (Validation.validateEmailIsAvailable(email))
                 {
                     return true;
                 }

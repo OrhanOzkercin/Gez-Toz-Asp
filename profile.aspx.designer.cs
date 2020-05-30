@@ -69,15 +69,6 @@ namespace geztoz_asp
         protected global::System.Web.UI.WebControls.TextBox password;
 
         /// <summary>
-        /// validateProfile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label validateProfile;
-
-        /// <summary>
         /// profileUpdateButton control.
         /// </summary>
         /// <remarks>
@@ -85,5 +76,14 @@ namespace geztoz_asp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button profileUpdateButton;
+
+        /// <summary>
+        /// validateProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label validateProfile;
     }
 }

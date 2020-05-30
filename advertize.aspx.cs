@@ -58,6 +58,17 @@ namespace geztoz_asp
                     DateTime travelDate = Convert.ToDateTime(date.Text);
                     TravelHandler travelHandler = TravelHandler.getInitial();
                     travelHandler.registerTravel(driverId, driverName, driverSurname, totalSeat, availableSeat, fromDestination, toDestination, travelDate);
+
+                    validateAdvertize.Text = "İlan başarıyla verildi";
+                    validateAdvertize.BackColor = Color.FromArgb(208,234,163);
+                    validateAdvertize.ForeColor = Color.Black;
+                    validateAdvertize.Visible = true;
+
+                    @from.Text = "";
+                    to.Text = "";
+                    this.totalSeat.Text = "";
+                    date.Text = "";
+
                 }
                 catch (Exception exception)
                 {
@@ -77,7 +88,10 @@ namespace geztoz_asp
 
         protected void exit_Click(object sender, EventArgs e)
         {
-            LogOut logOut = new LogOut();
+            HttpCookie cookie = Request.Cookies["Preferences"];
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie);
+            new LogOut();
             Response.Redirect("homepage.aspx");
         }
     }

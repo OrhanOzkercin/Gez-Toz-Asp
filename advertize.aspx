@@ -174,8 +174,9 @@
 				<div>
                     <asp:Button ID="advertizeButton" runat="server"  CssClass="btn btn-secondary" Text="İlan Ver!" OnClick="advertizeButton_Click" />
                 </div>
+                <asp:Label ID="validateAdvertize" runat="server" Visible="False" Text="Label"></asp:Label>
 			</section>
-            <asp:Label ID="validateAdvertize" runat="server" Visible="False" Text="Label"></asp:Label>
+            
 
 		</main>
 		<footer id="footer" class="bg-dark advertize-footer">
