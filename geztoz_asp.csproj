@@ -97,7 +97,6 @@
       <DependentUpon>advertize.aspx</DependentUpon>
     </Compile>
     <Compile Include="DatabaseHandler.cs" />
-    <Compile Include="ErrorHandler.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

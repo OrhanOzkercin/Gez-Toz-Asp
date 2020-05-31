@@ -45,6 +45,11 @@ namespace geztoz_asp
                 if (this.email.Text != "")
                 {
                     isValid = Validation.validateEmailIsAvailable(this.email.Text);
+
+                    validateProfile.Text = "Bu mail adresi kullanılmakta! ";
+                    validateProfile.BackColor = Color.FromArgb(232, 74, 95);
+                    validateProfile.ForeColor = Color.White;
+                    validateProfile.Visible = true;
                 }
 
                 if (isValid)

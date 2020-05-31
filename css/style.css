@@ -615,6 +615,10 @@ img {
 
  */
 /* Profile Page */
+.profile .row {
+    padding-bottom: 122px;
+}
+
 .profile .column:last-child {
 	flex-grow: 3;
 }
@@ -704,6 +708,7 @@ tr:nth-child(2n + 2) {
 }
 
 .profile-footer {
+	
     position: absolute;
     bottom: 0;
     left: 0;
