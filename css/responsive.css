@@ -107,9 +107,7 @@
 
 @media (max-width: 1430px) and (min-width: 993px) {
 
-    .flex-items > div {
-        min-width: 260px;
-    }
+   
 	.welcome img {
 		width: 250px;
 		height: 250px;
@@ -132,8 +130,16 @@
 		width: 200px;
 	}
 
+    .flex-items > div {
+        min-width: 200px;
+    }
+
+    .flex-items > div h3 {
+        font-size: 1.2rem;
+    }
 	.flex-items input {
-		width: 17rem;
+		width: 14rem;
+        padding: 15px;
 	}
 
 	.row .column .column-1,
@@ -144,7 +150,7 @@
 		justify-content: center;
 		align-items: center;
 		text-align: center;
-		padding: 10px;
+		padding: 5px;
 	}
 }
 
