@@ -86,5 +86,14 @@ namespace geztoz_asp
            
 
         }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            HttpCookie cookie = Request.Cookies["Preferences"];
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie);
+            new LogOut();
+            Response.Redirect("homepage.aspx");
+        }
     }
 }

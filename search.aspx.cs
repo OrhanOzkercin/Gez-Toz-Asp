@@ -150,29 +150,6 @@ namespace geztoz_asp
 
             column1ContentItems_2.Controls.Add(p_2);
 
-
-            //HtmlGenericControl column1ContentItems_3 = new HtmlGenericControl("div");
-            //column1ContentItems_3.Attributes.Add("class", "content-items");
-
-            //contents.Controls.Add(column1ContentItems_3);
-
-            //HtmlGenericControl iconUser3 = new HtmlGenericControl("i");
-            //iconUser3.Attributes.Add("class", "far fa-alt");
-
-            //column1ContentItems_3.Controls.Add(iconUser3);
-
-            //HtmlGenericControl h3_3 = new HtmlGenericControl("h3");
-            //h3_3.InnerText = "Yaş:";
-
-            //column1ContentItems_3.Controls.Add(h3_3);
-
-            //HtmlGenericControl p_3 = new HtmlGenericControl("p");
-            //p_3.InnerText = "23:düzelt";
-
-            //column1ContentItems_3.Controls.Add(p_3);
-
-
-
             HtmlGenericControl column_2 = new HtmlGenericControl("div");
             column_2.Attributes.Add("class", "column");
 
@@ -214,7 +191,7 @@ namespace geztoz_asp
             column2ContentItems_1.Controls.Add(h3_2_1);
 
             HtmlGenericControl p_2_1 = new HtmlGenericControl("p");
-            p_2_1.InnerText = travel.FromDestination;
+            p_2_1.InnerText = travel.FromDestination.ToUpper();
 
             column2ContentItems_1.Controls.Add(p_2_1);
 
@@ -234,7 +211,7 @@ namespace geztoz_asp
             column2ContentItems_2.Controls.Add(h3_2_2);
 
             HtmlGenericControl p_2_2 = new HtmlGenericControl("p");
-            p_2_2.InnerText = travel.ToDestination;
+            p_2_2.InnerText = travel.ToDestination.ToUpper();
 
             column2ContentItems_2.Controls.Add(p_2_2);
 
@@ -255,7 +232,7 @@ namespace geztoz_asp
             column2ContentItems_3.Controls.Add(h3_2_3);
 
             HtmlGenericControl p_2_3 = new HtmlGenericControl("p");
-            p_2_3.InnerText = travel.TravelDate.Year.ToString();
+            p_2_3.InnerText =travel.TravelDate.Month.ToString() + "/" + travel.TravelDate.Day.ToString() +  "/" +travel.TravelDate.Year.ToString();
 
             column2ContentItems_3.Controls.Add(p_2_3);
 
@@ -304,7 +281,7 @@ namespace geztoz_asp
             content_items_2.Controls.Add(h3_3_2);
 
             HtmlGenericControl p_3_2 = new HtmlGenericControl("p");
-            p_3_2.InnerText = travel.TotalSeat.ToString();
+            p_3_2.InnerText = travel.AvailableSeat.ToString();
 
             content_items_2.Controls.Add(p_3_2);
 
@@ -333,15 +310,6 @@ namespace geztoz_asp
             contentContainer3_contents.Attributes.Add("class", "contents");
 
             contentContainer3.Controls.Add(contentContainer3_contents);
-
-
-            //Button buttonName = new Button();
-            //buttonName.ID = "button" + idNumber.ToString();
-            //buttonName.Attributes.Add("class", "btn");
-            //buttonName.Text = "Bu yolculuğa Katıl";
-            //buttonName.Click += new EventHandler(btnYolculugaKatil_Click);
-            //contentContainer3_contents.Controls.Add(buttonName);
-
             
             contentContainer3_contents.Controls.Add(btnList[counter]);
             btnList[counter].Visible = true;
@@ -378,10 +346,20 @@ namespace geztoz_asp
                 }
                 else
                 {
-                    validateSearch.Text = "Yolculuğa kaydınız başarı ile yapıldı.";
-                    validateSearch.BackColor = Color.FromArgb(208, 234, 163);
-                    validateSearch.ForeColor = Color.Black;
-                    validateSearch.Visible = true;
+                    if (dh.updateAvailableSeat(idList[index - 1].ToString(), int.Parse(wantedSeat.Text)))
+                    {
+                        validateSearch.Text = "Yolculuğa kaydınız başarı ile yapıldı.";
+                        validateSearch.BackColor = Color.FromArgb(208, 234, 163);
+                        validateSearch.ForeColor = Color.Black;
+                        validateSearch.Visible = true;
+                    }
+                    else
+                    {
+                        validateSearch.Text = "Bu yolculukta yeterli alan yok";
+                        validateSearch.BackColor = Color.FromArgb(232, 74, 95);
+                        validateSearch.ForeColor = Color.White;
+                        validateSearch.Visible = true;
+                    }
                 }
 
 

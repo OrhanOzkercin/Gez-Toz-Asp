@@ -212,6 +212,36 @@ namespace geztoz_asp
             return passengerId;
         }
 
+        private int getTotalSeatFromCertainTravel(string travelId)
+        {
+            int availableSeat = 0;
+            OleDbCommand select = new OleDbCommand("Select totalSeat from Travels where travelId = @travelId ", conn);
+            conn.Open();
+            select.Parameters.AddWithValue("@travelId", travelId);
+            OleDbDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                availableSeat = int.Parse(reader["totalSeat"].ToString());
+            }
+            conn.Close();
+            return availableSeat;
+        }
+
+        private int getAvailableSeatFromCertainTravel(string travelId)
+        {
+            int availableSeat = 0;
+            OleDbCommand select = new OleDbCommand("Select availableSeat from Travels where travelId = @travelId ", conn);
+            conn.Open();
+            select.Parameters.AddWithValue("@travelId", travelId);
+            OleDbDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                availableSeat = int.Parse(reader["availableSeat"].ToString());
+            }
+            conn.Close();
+            return availableSeat;
+        }
+
         public bool updatePassengers(string travelId, string passengerId)
         {
             bool isValid = false;
@@ -244,6 +274,36 @@ namespace geztoz_asp
                 return false;
             }
 
+        }
+
+        public bool updateAvailableSeat(string travelId,int signedSeat)
+        {
+            int availableSeat = getAvailableSeatFromCertainTravel(travelId);
+            int totalSeat = getTotalSeatFromCertainTravel(travelId);
+            availableSeat -= signedSeat;
+            if (Validation.validateSeat(totalSeat, availableSeat))
+            {
+                try
+                {
+                    OleDbCommand update = new OleDbCommand("UPDATE Travels SET  availableSeat= @availableSeat WHERE [travelId] = @travelId ", conn);
+
+                    conn.Open();
+                    update.Parameters.Add("@availableSeat", availableSeat);
+                    update.Parameters.Add("@travelId", travelId);
+
+                    update.ExecuteNonQuery();
+                    conn.Close();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

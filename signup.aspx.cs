@@ -27,25 +27,41 @@ namespace geztoz_asp
             }
             else
             {
-                try
+                if (Validation.validateEmailIsAvailable(signupEmail.Text))
                 {
-                    if (userHandler.registerUser(signupName.Text, signUpSurname.Text, signupEmail.Text, signupPassword.Text))
+                    try
                     {
-                        Response.Redirect("homepage.aspx");
+                        if (userHandler.registerUser(signupName.Text, signUpSurname.Text, signupEmail.Text, signupPassword.Text))
+                        {
+                            validateSignup.Text = "Kaydınız Tamamlandı";
+                            validateSignup.BackColor = Color.FromArgb(168, 230, 95);
+                            validateSignup.ForeColor = Color.White;
+                            validateSignup.Visible = true;
+
+                            Response.Redirect("homepage.aspx");
+                        }
+
+                        else
+                        {
+                            validateSignup.Text = "Tüm alanları doğru bir şekilde doldurunuz";
+                            validateSignup.BackColor = Color.FromArgb(232, 74, 95);
+                            validateSignup.ForeColor = Color.White;
+                            validateSignup.Visible = true;
+                        }
                     }
+                    catch (Exception exception)
+                    {
                         
-                    else
-                    {
-                        validateSignup.Text = "Tüm alanları doğru bir şekilde doldurunuz";
-                        validateSignup.BackColor = Color.FromArgb(232, 74, 95);
-                        validateSignup.ForeColor = Color.White;
-                        validateSignup.Visible = true;
                     }
                 }
-                catch (Exception exception)
+                else
                 {
-                   
+                    validateSignup.Text = "Bu mail adresi kullanılıyor.";
+                    validateSignup.BackColor = Color.FromArgb(232, 74, 95);
+                    validateSignup.ForeColor = Color.White;
+                    validateSignup.Visible = true;
                 }
+                
             }
             
         }

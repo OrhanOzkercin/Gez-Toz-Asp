@@ -74,11 +74,10 @@
                             </footer>
                         </form>
                     </div>
-                    <asp:Label ID="validateLabel" runat="server" Visible="False" Text="Label">Kullanici adi veya şifre yanlış!</asp:Label>
                 </div>
-               
-
+             
             </div>
+            <asp:Label ID="validateLabel" runat="server" Visible="False" Text="Label">Kullanici adi veya şifre yanlış!</asp:Label>
         </main>
         <footer id="footer" class="bg-dark login-footer">
             <p>Copyright &copy; 2020</p>

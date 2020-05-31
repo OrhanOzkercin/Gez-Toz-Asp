@@ -27,7 +27,9 @@ namespace geztoz_asp
                 advertizeDiveder.Visible = true;
                 advertizeButtons.Visible = true;
                 p3.Visible = true;
-                advertizeWelcomeLabel.InnerText= "Hoş Geldin" +" " + cookie["userName"];
+                advertizeWelcomeLabel.InnerText = "Hoş Geldin ";
+                advertizeWelcomeLabel.InnerText += " ";
+                advertizeWelcomeLabel.InnerText += cookie["userName"].ToString();
                 advertizeWelcomeParagraph.InnerText= "Yolculuk için güzel bir gün!";
                 
             }
@@ -43,7 +45,7 @@ namespace geztoz_asp
             }
             else
             {
-                advertizeWelcomeLabel.InnerText = "Hoş Geldin" + cookie["userName"];
+                advertizeWelcomeLabel.InnerText = "Hoş Geldin" + " " + cookie["userName"];
                 advertizeWelcomeParagraph.InnerText = "Yolculuk için güzel bir gün!";
                 advertizeButtons.Visible = true;
                 try
