@@ -118,7 +118,6 @@
                             <h3>Saat Kaçta Gidiyorsun?</h3>
                             <div>
                                 <asp:TextBox  ID="time" runat="server" TextMode="Time" ></asp:TextBox>
-
                             </div>
                         </div>
                     </div>

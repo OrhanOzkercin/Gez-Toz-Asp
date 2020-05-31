@@ -9,7 +9,7 @@ namespace geztoz_asp
 
     public class DatabaseHandler
     {
-        private static OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = C:\Users\nur\source\repos\WebApplication24\WebApplication24\App_Data\main.mdb;Persist Security Info=True");
+        private static OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\egil_\Desktop\proje_asp\geztoz_asp\geztoz_asp\App_Data\main.mdb;Persist Security Info=True");
         private static DatabaseHandler dh;
         private DatabaseHandler() { }
 

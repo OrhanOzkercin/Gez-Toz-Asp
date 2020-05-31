@@ -105,7 +105,11 @@
 	}
 }
 
-@media (max-width: 1366px) and (min-width: 993px) {
+@media (max-width: 1430px) and (min-width: 993px) {
+
+    .flex-items > div {
+        min-width: 260px;
+    }
 	.welcome img {
 		width: 250px;
 		height: 250px;
@@ -143,3 +147,4 @@
 		padding: 10px;
 	}
 }
+
