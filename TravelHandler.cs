@@ -16,6 +16,7 @@ namespace geztoz_asp
         private string fromDestination;
         private string toDestination;
         private DateTime travelDate;
+        private string travelTime;
         
         private static Travel travel;
 
@@ -70,12 +71,18 @@ namespace geztoz_asp
             set => this.travelDate = value;
         }
 
+        public string TravelTime
+        {
+            get => this.travelTime;
+            set => this.travelTime = value;
+        }
+
         public void setNull()
         {
             travel = null;
         }
         
-        Travel(string travelId, string driverId,string driverName, string driverSurname,string passengersId,int totalSeat,int availableSeat,string fromDestination,string toDestination,DateTime travelDate )
+        Travel(string travelId, string driverId,string driverName, string driverSurname,string passengersId,int totalSeat,int availableSeat,string fromDestination,string toDestination,DateTime travelDate, string travelTime )
         {
             this.travelId = travelId;
             this.driverId = driverId;
@@ -87,13 +94,14 @@ namespace geztoz_asp
             this.fromDestination = fromDestination;
             this.toDestination = toDestination;
             this.travelDate = travelDate;
+            this.travelTime = travelTime;
         }
 
-        public static Travel getInitial(string travelId = "", string driverId= "", string driverName = "", string driverSurname = "", string passengersId = "", int totalSeat = 0, int availableSeat = 0, string fromDestination = "", string toDestination = "", DateTime travelDate = new DateTime())
+        public static Travel getInitial(string travelId = "", string driverId= "", string driverName = "", string driverSurname = "", string passengersId = "", int totalSeat = 0, int availableSeat = 0, string fromDestination = "", string toDestination = "", DateTime travelDate = new DateTime(), string travelTime = "")
         {
             if (travel == null)
             {
-                travel = new Travel(travelId, driverId,driverName,driverSurname,passengersId,totalSeat,availableSeat,fromDestination,toDestination,travelDate);
+                travel = new Travel(travelId, driverId,driverName,driverSurname,passengersId,totalSeat,availableSeat,fromDestination,toDestination,travelDate,travelTime);
                 return travel;
             }
             else
@@ -133,7 +141,7 @@ namespace geztoz_asp
         }
         
         
-        public void registerTravel(string driverId, string driverName,string driverSurname,int totalSeat, int availableSeat, string fromDestination, string toDestination, DateTime travelDate)
+        public void registerTravel(string driverId, string driverName,string driverSurname,int totalSeat, int availableSeat, string fromDestination, string toDestination, DateTime travelDate, string travelTime)
         {
             isValidSeat = Validation.validateSeat(totalSeat, availableSeat);
             isEmpty = Validation.validateTravelRegisterInputsEmpty(driverName, driverSurname, fromDestination, toDestination);
@@ -141,7 +149,7 @@ namespace geztoz_asp
 
             if (isValidSeat && isEmpty && isValidTravelDate)
             {
-                Travel travel = Travel.getInitial(generateTravelId(),driverId,driverName,driverSurname,"",totalSeat,availableSeat,fromDestination,toDestination,travelDate);
+                Travel travel = Travel.getInitial(generateTravelId(),driverId,driverName,driverSurname,"",totalSeat,availableSeat,fromDestination,toDestination,travelDate, travelTime);
                 dh.addTravel(travel);
                 travel.setNull();
                 isEmpty = false;

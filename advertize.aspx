@@ -63,12 +63,7 @@
 						<div ID="advertizeButtons" class="column-3" runat="server" Visible="False">
                             <a href="#p3" class="btn">Yeni Bir İlan Ver</a>
                             <a href="profile.aspx" class="btn">Profiline Git</a>
-                            
                             <asp:Button ID="exit" runat="server" CssClass="btn" Text="Çıkış" OnClick="exit_Click" />
-
-							<%--<a href="#p3" class="btn">Yeni Bir İlan Ver</a>--%>
-<%--							
-                            <a href="" class="btn">Çıkış</a>--%>
 						</div>
 					</div>
 				</div>
@@ -84,7 +79,6 @@
                             <h3>Nereden Gidiyorsun?</h3>
                             <div>
                                 <asp:TextBox  ID="from" runat="server" placeholder="İzmir"></asp:TextBox>
-                                <%--<input type="text" name="from" id="from" placeholder="İZMİR" />--%>
                             </div>
                         </div>
                     </div>
@@ -94,8 +88,6 @@
                             <h3>Nereye Gidiyorsun?</h3>
                             <div>
                                 <asp:TextBox  ID="to" runat="server" placeholder="İstanbul"></asp:TextBox>
-
-                                <%--<input type="text" name="to" id="to" placeholder="İSTANBUL" />--%>
                             </div>
                         </div>
                     </div>
@@ -104,15 +96,7 @@
                         <div>
                             <h3>Kaç Kişi Gidiyorsun?</h3>
                             <div>
-								
                                 <asp:TextBox  ID="totalSeat" runat="server" TextMode="Number" placeholder="1"></asp:TextBox>
-
-                                <%--<input
-									type="number"
-									name="people"
-									id="people"
-									placeholder="1"
-								/>--%>
                             </div>
                         </div>
                     </div>
@@ -127,50 +111,20 @@
                             </div>
                         </div>
                     </div>
+
+					<div>
+                        <i class="fas fa-clock fa-5x"></i>
+                        <div>
+                            <h3>Saat Kaçta Gidiyorsun?</h3>
+                            <div>
+                                <asp:TextBox  ID="time" runat="server" TextMode="Time" ></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-				<%--<div class="flex-items">
-					<div>
-						<i class="fas fa-map-marker fa-5x"></i>
-						<div>
-							<h3>Nereden Gidiyorsun?</h3>
-							<div>
-								<input type="text" name="from" id="from" placeholder="İZMİR" />
-							</div>
-						</div>
-					</div>
-					<div>
-						<i class="fas fa-location-arrow fa-5x"></i>
-						<div>
-							<h3>Nereye Gidiyorsun?</h3>
-							<div>
-								<input type="text" name="to" id="to" placeholder="İSTANBUL" />
-							</div>
-						</div>
-					</div>
-					<div>
-						<i class="fas fa-users fa-5x"></i>
-						<div>
-							<h3>Kaç Kişi Gidiyorsun?</h3>
-							<div>
-								<input
-									type="number"
-									name="people"
-									id="people"
-									placeholder="1"
-								/>
-							</div>
-						</div>
-					</div>
-					<div>
-						<i class="fas fa-calendar-day fa-5x"></i>
-						<div>
-							<h3>Ne Zaman Gidiyorsun?</h3>
-							<div>
-								<input type="date" name="date" id="date" />
-							</div>
-						</div>
-					</div>
-				</div>--%>
+
 				<div>
                     <asp:Button ID="advertizeButton" runat="server"  CssClass="btn btn-secondary" Text="İlan Ver!" OnClick="advertizeButton_Click" />
                 </div>

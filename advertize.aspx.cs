@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
+
 
 namespace geztoz_asp
 {
@@ -58,10 +58,11 @@ namespace geztoz_asp
                     int totalSeat = int.Parse(this.totalSeat.Text);
                     int availableSeat = totalSeat;
                     DateTime travelDate = Convert.ToDateTime(date.Text);
+                    string travelTime = time.Text;
                     TravelHandler travelHandler = TravelHandler.getInitial();
-                    travelHandler.registerTravel(driverId, driverName, driverSurname, totalSeat, availableSeat, fromDestination, toDestination, travelDate);
+                    travelHandler.registerTravel(driverId, driverName, driverSurname, totalSeat, availableSeat, fromDestination, toDestination, travelDate, travelTime);
 
-                    validateAdvertize.Text = "İlan başarıyla verildi";
+                    validateAdvertize.Text = "İlanınız başarılı bir şekilde kaydedildi.";
                     validateAdvertize.BackColor = Color.FromArgb(208,234,163);
                     validateAdvertize.ForeColor = Color.Black;
                     validateAdvertize.Visible = true;
@@ -70,6 +71,7 @@ namespace geztoz_asp
                     to.Text = "";
                     this.totalSeat.Text = "";
                     date.Text = "";
+                    time.Text = "";
 
                 }
                 catch (Exception exception)

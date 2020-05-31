@@ -9,7 +9,7 @@ namespace geztoz_asp
 
     public class DatabaseHandler
     {
-        private static OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = C:\Users\egil_\Desktop\proje_asp\geztoz_asp\geztoz_asp\App_Data\main.mdb;Persist Security Info=True");
+        private static OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = C:\Users\nur\source\repos\WebApplication24\WebApplication24\App_Data\main.mdb;Persist Security Info=True");
         private static DatabaseHandler dh;
         private DatabaseHandler() { }
 
@@ -123,8 +123,8 @@ namespace geztoz_asp
 
         public void addTravel(Travel travel)
         {
-            OleDbCommand insert = new OleDbCommand("INSERT INTO Travels ( travelId, driverId, driverName, driverSurname, passengersId, totalSeat, availableSeat, [from], [to], travelDate )" +
-                                                   "VALUES (@travelId,@driverId,@driverName,@driverSurname,@passengersId,@totalSeat,@availableSeat,@from,@to,@travelDate)", conn);
+            OleDbCommand insert = new OleDbCommand("INSERT INTO Travels ( travelId, driverId, driverName, driverSurname, passengersId, totalSeat, availableSeat, [from], [to], travelDate, travelTime )" +
+                                                   "VALUES (@travelId,@driverId,@driverName,@driverSurname,@passengersId,@totalSeat,@availableSeat,@from,@to,@travelDate,@travelTime)", conn);
             conn.Open();
 
             insert.Parameters.AddWithValue("@travelId", travel.TravelId);
@@ -137,6 +137,7 @@ namespace geztoz_asp
             insert.Parameters.AddWithValue("@from", travel.FromDestination);
             insert.Parameters.AddWithValue("@to", travel.ToDestination);
             insert.Parameters.AddWithValue("@travelDate", travel.TravelDate);
+            insert.Parameters.AddWithValue("@travelTime", travel.TravelTime);
 
             insert.ExecuteNonQuery();
             conn.Close();
@@ -171,7 +172,7 @@ namespace geztoz_asp
             while (reader.Read())
             {
                 Travel travel = Travel.getInitial(reader["travelId"].ToString(), reader["driverId"].ToString(), reader["driverName"].ToString(), reader["driverSurname"].ToString()
-                    , reader["passengersId"].ToString(), int.Parse(reader["totalSeat"].ToString()), int.Parse(reader["availableSeat"].ToString()), from, to, travelDate);
+                    , reader["passengersId"].ToString(), int.Parse(reader["totalSeat"].ToString()), int.Parse(reader["availableSeat"].ToString()), from, to, travelDate, reader["travelTime"].ToString());
                 travel.setNull();
                 filteredTravels.Add(travel);
             }

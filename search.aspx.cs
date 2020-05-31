@@ -7,9 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using System.Windows.Forms;
 using Button = System.Web.UI.WebControls.Button;
-using HtmlElement = System.Windows.Forms.HtmlElement;
+
 
 namespace geztoz_asp
 {
@@ -59,7 +58,7 @@ namespace geztoz_asp
                 }
                 for (int i = 0; i < filteredTravels.Count; i++)
                 {
-                    filteredTravelsPanel.Controls.Add(createAvailableTravel(filteredTravels[i], i));
+                    filteredTravelsPanel.Controls.Add(createAvailableTravel(filteredTravels[i]));
                     counter += 1;
                     idList.Add(filteredTravels[i].TravelId);
                 }
@@ -73,7 +72,7 @@ namespace geztoz_asp
             }
         }
 
-        private HtmlGenericControl createAvailableTravel(Travel travel, int idNumber)
+        private HtmlGenericControl createAvailableTravel(Travel travel)
         {
 
             HtmlGenericControl section = new HtmlGenericControl("section");
@@ -232,7 +231,7 @@ namespace geztoz_asp
             column2ContentItems_3.Controls.Add(h3_2_3);
 
             HtmlGenericControl p_2_3 = new HtmlGenericControl("p");
-            p_2_3.InnerText =travel.TravelDate.Month.ToString() + "/" + travel.TravelDate.Day.ToString() +  "/" +travel.TravelDate.Year.ToString();
+            p_2_3.InnerText = travel.TravelDate.Month.ToString() + "/" + travel.TravelDate.Day.ToString() + "/" + travel.TravelDate.Year.ToString() + " - " + travel.TravelTime;
 
             column2ContentItems_3.Controls.Add(p_2_3);
 
