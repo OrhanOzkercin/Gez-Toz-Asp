@@ -27,7 +27,6 @@
     <asp:Button ID="Button_3" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
     <asp:Button ID="Button_4" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
     <asp:Button ID="Button_5" runat="server" CssClass="btn" Text="Bu Yolculuğa Katıl" OnClick="btnJoinTravel" Visible="False" />
-   
         <div class="body ">
             <header class="hero search">
                 <nav class="navbar">
@@ -60,7 +59,6 @@
                                 <h3>Nereden Gidiyorsun?</h3>
                                 <div>
                                     <asp:TextBox ID="from" runat="server" placeholder="İzmir"></asp:TextBox>
-                                    <%--<input type="text" name="from" id="from" placeholder="İZMİR" />--%>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +68,6 @@
                                 <h3>Nereye Gidiyorsun?</h3>
                                 <div>
                                     <asp:TextBox ID="to" runat="server" placeholder="İstanbul"></asp:TextBox>
-
-                                    <%--<input type="text" name="to" id="to" placeholder="İSTANBUL" />--%>
                                 </div>
                             </div>
                         </div>
@@ -82,13 +78,6 @@
                                 <div>
 
                                     <asp:TextBox ID="wantedSeat" runat="server" TextMode="Number" placeholder="1"></asp:TextBox>
-
-                                    <%--<input
-									type="number"
-									name="people"
-									id="people"
-									placeholder="1"
-								/>--%>
                                 </div>
                             </div>
                         </div>
@@ -98,20 +87,15 @@
                                 <h3>Ne Zaman Gidiyorsun?</h3>
                                 <div>
                                     <asp:TextBox ID="travelDate" runat="server" TextMode="Date"></asp:TextBox>
-
-                                    <%--<input type="date" name="date" id="date" />--%>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
                         <asp:Button ID="searchButton" runat="server" CssClass="btn btn-secondary" Text="Ara" OnClick="searchButton_Click" />
-                        <%--<button class="btn btn-secondary">Ara</button>--%>
                     </div>
                     <asp:Label ID="validateSearch" runat="server" Visible="False" Text="Label"></asp:Label>
                 </section>
-            
-
                 <!-- Road List -->
                 <asp:Panel ID="filteredTravelsPanel" runat="server">
                 </asp:Panel>
@@ -192,9 +176,6 @@
                             </div>
                         </div>
                     </div>
-               
-              
-                
                 </section>
             </main>
             <footer id="footer"  class="bg-dark search-footer">

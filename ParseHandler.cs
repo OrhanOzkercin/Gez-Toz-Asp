@@ -15,9 +15,6 @@ namespace geztoz_asp
             byte[] isoBytes = Encoding.Convert(utf8, iso, utfBytes);
             string msg = iso.GetString(isoBytes);
             return msg;
-            //Encoding.GetEncoding("iso-8859-9");
-            //byte[] bytes = Encoding.Default.GetBytes(stringValue);
-            //return Encoding.UTF8.GetString(bytes);
         }
     }
 }

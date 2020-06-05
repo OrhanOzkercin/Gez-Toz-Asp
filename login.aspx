@@ -49,26 +49,14 @@
                         <h1>Giriş Yap</h1>
                         <form>
                             <div class="form-group">
-
                                 <asp:Label ID="loginEmailLabel" runat="server" AssociatedControlID="loginEmail" Text="Email"></asp:Label>
                                 <asp:TextBox  ID="loginEmail" runat="server"></asp:TextBox>
-
-                               <%-- <label for="email">Email</label>
-                                <input type="email" name="email" id="email" />--%>
-
                             </div>
                             <div class="form-group">
-                                
                                 <asp:Label ID="loginPasswordLabel" runat="server" AssociatedControlID="loginPassword" Text="Şifre"></asp:Label>
                                 <asp:TextBox  ID="loginPassword" runat="server" TextMode="Password"></asp:TextBox>
-                                
-
-                               <%-- <label for="password">Şifre</label>
-                                <input type="password" name="password" id="password" />--%>
                             </div>
                             <asp:Button ID="loginButton" runat="server"  CssClass="btn" Text="Giriş Yap" OnClick="loginButton_Click"  />
-
-                            <%--<button type="submit" class="btn">Giriş Yap</button>--%>
                             <footer id="form-footer">
                                 <p>Hesabın yok mu? <a href="signup.aspx">Kayıt ol</a></p>
                             </footer>

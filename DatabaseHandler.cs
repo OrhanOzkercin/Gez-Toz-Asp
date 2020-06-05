@@ -90,7 +90,7 @@ namespace geztoz_asp
             while (reader.Read())
             {
                 user = User.getInitial(reader["userId"].ToString(), reader["name"].ToString(), reader["surname"].ToString(), reader["email"].ToString(),
-                                         reader["password"].ToString(), reader["travelsId"].ToString());
+                                         reader["password"].ToString());
             }
             conn.Close();
             return user;
@@ -119,6 +119,7 @@ namespace geztoz_asp
                 return false;
             }
         }
+        
         //This part is all about travel database operations. 
 
         public void addTravel(Travel travel)

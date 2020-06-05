@@ -53,37 +53,24 @@
                                 
                                 <asp:Label ID="signupNameLabel" runat="server" AssociatedControlID="signupName" Text="isim"></asp:Label>
                                 <asp:TextBox  ID="signupName" runat="server" ></asp:TextBox>
-
-                                <%--<label for="first-name">İsim</label>
-                                <input type="text" name="firstName" id="first-name" />--%>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="signUpSurnameLabel" runat="server" AssociatedControlID="signUpSurname" Text="Soyisim"></asp:Label>
                                 <asp:TextBox  ID="signUpSurname" runat="server"></asp:TextBox>
-
-                                <%--<label for="last-name">Soyisim</label>
-                                <input type="text" name="lastName" id="last-name" />--%>
                             </div>
                             <div class="form-group">
                                 
                                 <asp:Label ID="signupEmailLabel" runat="server" AssociatedControlID="signupEmail" Text="Email"></asp:Label>
                                 <asp:TextBox  ID="signupEmail" runat="server" TextMode="Email"></asp:TextBox>
-
-                                <%--<label for="email">Email</label>
-                                <input type="email" name="email" id="email" />--%>
                             </div>
                             <div class="form-group">
                                 
                                 <asp:Label ID="signupPasswordLabel" runat="server" AssociatedControlID="signupPassword" Text="Şifre"></asp:Label>
                                 <asp:TextBox  ID="signupPassword" runat="server" TextMode="Password"></asp:TextBox>
-
-                               <%-- <label for="password">Şifre</label>
-                                <input type="password" name="password" id="password" />--%>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="signupPasswordVerifLabel" runat="server" AssociatedControlID="signupPasswordVerif" Text="Şifre Doğrulaması"></asp:Label>
                                 <asp:TextBox  ID="signupPasswordVerif" runat="server" TextMode="Password"></asp:TextBox>
-<%--                                <input type="password" name="signupPassword" id="signupPassword" />--%>
                             </div>
                             <asp:Button ID="signupButton" runat="server"  CssClass="btn" Text="Üye Ol" OnClick="signupButton_Click"  />
                         </form>
